@@ -1,5 +1,7 @@
 import { ThemeProvider, createTheme } from '@mui/material/styles';
-import @fontsource/roboto;
+import '@fontsource/roboto';
+
+import { HomePage } from 'pages';
 
 const theme = createTheme({
   palette: {
@@ -16,7 +18,7 @@ const theme = createTheme({
 function App() {
   return (
     <ThemeProvider theme={theme}>
-      Barry Li
+      <HomePage />
     </ThemeProvider>
   );
 }
