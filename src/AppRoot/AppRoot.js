@@ -1,3 +1,5 @@
+import @fontsource/roboto;
+
 function App() {
   return (
     <div>
