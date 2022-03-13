@@ -1,7 +1,8 @@
+import { BrowserRouter } from "react-router-dom";
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import '@fontsource/roboto';
 
-import { HomePage } from 'pages';
+import Router from 'routes';
 
 const theme = createTheme({
   palette: {
@@ -17,9 +18,11 @@ const theme = createTheme({
 
 function App() {
   return (
-    <ThemeProvider theme={theme}>
-      <HomePage />
-    </ThemeProvider>
+    <BrowserRouter>
+      <ThemeProvider theme={theme}>
+        <Router />
+      </ThemeProvider>
+    </BrowserRouter>
   );
 }
 
