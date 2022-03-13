@@ -33,18 +33,14 @@ const NavBar = () => (
             p: '6.5px',
             borderRadius: 1,
             border: '1px solid',
-            color: (theme) => (theme.palette.mode === 'dark' ? 'grey.100' : 'primary.main'),
-            bgcolor: (theme) =>
-              theme.palette.mode === 'dark' ? 'primaryDark.800' : 'transparent',
-            borderColor: (theme) =>
-              theme.palette.mode === 'dark' ? 'primaryDark.500' : 'grey.200',
+            color: 'grey.100',
+            bgcolor: 'transparent',
+            borderColor: 'grey.200',
             '& svg': { width: 18, height: 18 },
             '&:focus': {
               boxShadow: (theme) =>
                 `0 0 0 1px ${
-                theme.palette.mode === 'dark'
-                  ? theme.palette.primaryDark[600]
-                  : theme.palette.grey[200]
+                  theme.palette.grey[200]
               }`,
             },
           }}
