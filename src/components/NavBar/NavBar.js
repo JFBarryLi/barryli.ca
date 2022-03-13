@@ -5,28 +5,29 @@ import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import GitHubIcon from '@mui/icons-material/GitHub';
+import LinkedInIcon from '@mui/icons-material/LinkedIn';
 
 const NavBar = () => (
   <Box sx={{ flexGrow: 1 }}>
-    <AppBar position="static">
+    <AppBar position='static'>
       <Toolbar>
         <IconButton
-          size="large"
-          edge="start"
-          color="inherit"
-          aria-label="menu"
+          size='large'
+          edge='start'
+          color='inherit'
+          aria-label='menu'
           sx={{ mr: 2 }}
         >
           <MenuIcon />
         </IconButton>
-        <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+        <Typography variant='h6' component='div' sx={{ flexGrow: 1 }}>
           Barry Li
         </Typography>
         <IconButton
-          compone="a"
-          href="https://github.com/jfbarryli"
-          color="inherit"
-          aria-label="GitHub"
+          compone='a'
+          href='https://github.com/jfbarryli'
+          color='inherit'
+          aria-label='GitHub'
           sx={{
             mr: 1,
             position: 'relative',
@@ -46,6 +47,31 @@ const NavBar = () => (
           }}
         >
           <GitHubIcon fontSize='small' />
+        </IconButton>
+        <IconButton
+          compone='a'
+          href='https://linkedin.com/in/jingfeng-barry-li'
+          color='inherit'
+          aria-label='LinkedIn'
+          sx={{
+            mr: 1,
+            position: 'relative',
+            p: '6.5px',
+            borderRadius: 1,
+            border: '1px solid',
+            color: 'grey.100',
+            bgcolor: 'transparent',
+            borderColor: 'grey.200',
+            '& svg': { width: 18, height: 18 },
+            '&:focus': {
+              boxShadow: (theme) =>
+                `0 0 0 1px ${
+                  theme.palette.grey[200]
+                }`,
+            },
+          }}
+        >
+          <LinkedInIcon fontSize='small' />
         </IconButton>
       </Toolbar>
     </AppBar>
