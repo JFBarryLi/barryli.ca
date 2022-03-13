@@ -11,12 +11,17 @@ const today = new Date();
 const currentDay = Math.round((today - firstDay) / (1000*60*60*24));
 
 const SummaryCard = () => (
-  <Card sx={{ minWidth: 250 }}>
+  <Card sx={{
+    minWidth: 150,
+    width: '50%',
+    margin: 'auto',
+    marginTop: '3em',
+  }}>
     <CardContent>
       <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-        Travelling
+        On The Road
       </Typography>
-      <Typography sx={{ m: 2 }} variant="h3" color='text.secondary' component='div'>
+      <Typography sx={{ m: 2 }} variant="h5" color='text.secondary' component='div'>
         Day {currentDay}
       </Typography>
       <Typography sx={{ m: 2 }} color='text.secondary'>
