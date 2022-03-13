@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import NavBar from 'components/NavBar';
+import SummaryCard from './components/SummaryCard';
 
 const HomePageContainer = styled.div`
   display: block;
@@ -10,6 +11,7 @@ const HomePageContainer = styled.div`
 const HomePage = () => (
     <HomePageContainer>
       <NavBar />
+      <SummaryCard />
     </HomePageContainer>
 );
 
