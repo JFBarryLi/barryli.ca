@@ -66,6 +66,11 @@ const NavBar = function() {
               </Link>
             </MenuItem>
             <MenuItem onClick={handleCloseNavMenu}>
+              <Link to='/travel'>
+                <Typography textAlign='center'>Travel</Typography>
+              </Link>
+            </MenuItem>
+            <MenuItem onClick={handleCloseNavMenu}>
               <Link to='/projects'>
                 <Typography textAlign='center'>Projects</Typography>
               </Link>

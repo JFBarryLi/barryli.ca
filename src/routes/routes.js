@@ -2,6 +2,7 @@ import { useRoutes } from "react-router-dom";
 import HomePage from 'pages/HomePage';
 import NotFoundPage from 'pages/NotFoundPage';
 import AboutPage from 'pages/AboutPage';
+import TravelPage from 'pages/TravelPage';
 import ProjectsPage from 'pages/ProjectsPage';
 
 const Router = function() {
@@ -9,6 +10,7 @@ const Router = function() {
     { path: '/', element: <HomePage /> },
     { path: '*', element: <NotFoundPage /> },
     { path: '/about', element: <AboutPage /> },
+    { path: '/travel', element: <TravelPage /> },
     { path: '/projects', element: <ProjectsPage /> },
   ]);
 
