@@ -1,6 +1,5 @@
-import Typography from '@mui/material/Typography';
-
 import NavBar from 'components/NavBar';
+import PageHeader from 'components/PageHeader';
 
 const AboutPage = () => (
   <div sx={{
@@ -9,9 +8,7 @@ const AboutPage = () => (
     height: '100%',
   }}>
     <NavBar />
-    <Typography variant='h3' component='div' sx={{ flexGrow: 1 }}>
-      About
-    </Typography>
+    <PageHeader text='About' />
   </div>
 );
 

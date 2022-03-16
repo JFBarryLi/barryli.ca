@@ -1,10 +1,10 @@
 import { BrowserRouter } from "react-router-dom";
-import { ThemeProvider, createTheme } from '@mui/material/styles';
+import { ThemeProvider, createTheme, responsiveFontSizes } from '@mui/material/styles';
 import '@fontsource/roboto';
 
 import Router from 'routes';
 
-const theme = createTheme({
+let theme = createTheme({
   palette: {
     type: 'light',
     primary: {
@@ -15,6 +15,8 @@ const theme = createTheme({
     },
   },
 });
+
+theme = responsiveFontSizes(theme);
 
 function App() {
   return (

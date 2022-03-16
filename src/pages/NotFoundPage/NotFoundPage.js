@@ -6,7 +6,7 @@ const NotFoundPage = () => (
     width: '100%',
     height: '100%',
   }}>
-    <Typography variant='h3' component='div' sx={{ flexGrow: 1 }}>
+    <Typography variant='h1' component='div' sx={{ flexGrow: 1 }}>
       404 Not Found
     </Typography>
   </div>
