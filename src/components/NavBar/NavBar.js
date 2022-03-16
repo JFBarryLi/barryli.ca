@@ -4,13 +4,14 @@ import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
+import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import MenuItem from '@mui/material/MenuItem';
 
-import { Link } from 'react-router-dom';
+import { Link as RouterLink } from 'react-router-dom';
 
 const NavBar = function() {
   const [anchorElNav, setAnchorElNav] = useState(null);
@@ -56,37 +57,48 @@ const NavBar = function() {
             }}
           >
             <MenuItem onClick={handleCloseNavMenu}>
-              <Link to='/' end>
+              <RouterLink to='/' end>
                 <Typography textAlign='center'>Home</Typography>
-              </Link>
+              </RouterLink>
             </MenuItem>
             <MenuItem onClick={handleCloseNavMenu}>
-              <Link to='/about'>
+              <RouterLink to='/about'>
                 <Typography textAlign='center'>About</Typography>
-              </Link>
+              </RouterLink>
             </MenuItem>
             <MenuItem onClick={handleCloseNavMenu}>
-              <Link to='/travel'>
+              <RouterLink to='/travel'>
                 <Typography textAlign='center'>Travel</Typography>
-              </Link>
+              </RouterLink>
             </MenuItem>
             <MenuItem onClick={handleCloseNavMenu}>
-              <Link to='/projects'>
+              <RouterLink to='/projects'>
                 <Typography textAlign='center'>Projects</Typography>
-              </Link>
+              </RouterLink>
             </MenuItem>
             <MenuItem onClick={handleCloseNavMenu}>
-              <Link to='/contact'>
+              <RouterLink to='/contact'>
                 <Typography textAlign='center'>Contact</Typography>
-              </Link>
+              </RouterLink>
             </MenuItem>
           </Menu>
-          <Typography variant='h6' component='div' sx={{ flexGrow: 1 }}>
+          <Button
+            variant='text'
+            component={RouterLink}
+            to='/'
+            sx={{
+              flexGrow: 1,
+              color: 'grey.100',
+              justifyContent: 'flex-start',
+            }}
+          >
             Barry Li
-          </Typography>
+          </Button>
           <IconButton
             compone='a'
             href='https://github.com/jfbarryli'
+            target='_blank'
+            rel='noopener'
             color='inherit'
             aria-label='GitHub'
             sx={{
