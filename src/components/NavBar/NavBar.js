@@ -75,6 +75,11 @@ const NavBar = function() {
                 <Typography textAlign='center'>Projects</Typography>
               </Link>
             </MenuItem>
+            <MenuItem onClick={handleCloseNavMenu}>
+              <Link to='/contact'>
+                <Typography textAlign='center'>Contact</Typography>
+              </Link>
+            </MenuItem>
           </Menu>
           <Typography variant='h6' component='div' sx={{ flexGrow: 1 }}>
             Barry Li

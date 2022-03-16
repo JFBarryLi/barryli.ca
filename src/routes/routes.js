@@ -4,6 +4,7 @@ import NotFoundPage from 'pages/NotFoundPage';
 import AboutPage from 'pages/AboutPage';
 import TravelPage from 'pages/TravelPage';
 import ProjectsPage from 'pages/ProjectsPage';
+import ContactPage from 'pages/ContactPage';
 
 const Router = function() {
   let element = useRoutes([
@@ -12,6 +13,7 @@ const Router = function() {
     { path: '/about', element: <AboutPage /> },
     { path: '/travel', element: <TravelPage /> },
     { path: '/projects', element: <ProjectsPage /> },
+    { path: '/contact', element: <ContactPage /> },
   ]);
 
   return element;
