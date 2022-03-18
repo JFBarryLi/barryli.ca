@@ -2,26 +2,21 @@ import { useState } from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
 import Button from '@mui/material/Button';
-import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
-import MenuItem from '@mui/material/MenuItem';
 
 import { Link as RouterLink } from 'react-router-dom';
 
+import NavDrawer from 'components/NavDrawer';
+
 const NavBar = function() {
-  const [anchorElNav, setAnchorElNav] = useState(null);
+  const [drawIsOpen, setDrawIsOpen] = useState(false);
 
-  const handleOpenNavMenu = (event) => {
-    setAnchorElNav(event.currentTarget);
-  };
-
-  const handleCloseNavMenu = () => {
-    setAnchorElNav(null);
+  const handleDrawerToggle = () => {
+    setDrawIsOpen(!drawIsOpen);
   };
 
   return (
@@ -32,56 +27,13 @@ const NavBar = function() {
             size='large'
             edge='start'
             color='inherit'
-            aria-label='menu'
+            aria-label='open drawer'
             sx={{ mr: 2 }}
-            onClick={handleOpenNavMenu}
+            onClick={handleDrawerToggle}
           >
             <MenuIcon />
           </IconButton>
-          <Menu
-            id='menu-appbar'
-            anchorEl={anchorElNav}
-            anchorOrigin={{
-              vertical: 'bottom',
-              horizontal: 'left',
-            }}
-            keepMounted
-            transformOrigin={{
-              vertical: 'top',
-              horizontal: 'left',
-            }}
-            open={Boolean(anchorElNav)}
-            onClose={handleCloseNavMenu}
-            sx={{
-              display: { xs: 'block', md: 'none' },
-            }}
-          >
-            <MenuItem onClick={handleCloseNavMenu}>
-              <RouterLink to='/' end>
-                <Typography textAlign='center'>Home</Typography>
-              </RouterLink>
-            </MenuItem>
-            <MenuItem onClick={handleCloseNavMenu}>
-              <RouterLink to='/about'>
-                <Typography textAlign='center'>About</Typography>
-              </RouterLink>
-            </MenuItem>
-            <MenuItem onClick={handleCloseNavMenu}>
-              <RouterLink to='/travel'>
-                <Typography textAlign='center'>Travel</Typography>
-              </RouterLink>
-            </MenuItem>
-            <MenuItem onClick={handleCloseNavMenu}>
-              <RouterLink to='/projects'>
-                <Typography textAlign='center'>Projects</Typography>
-              </RouterLink>
-            </MenuItem>
-            <MenuItem onClick={handleCloseNavMenu}>
-              <RouterLink to='/contact'>
-                <Typography textAlign='center'>Contact</Typography>
-              </RouterLink>
-            </MenuItem>
-          </Menu>
+          <NavDrawer drawIsOpen={drawIsOpen} handleDrawerToggle={handleDrawerToggle} />
           <Button
             variant='text'
             component={RouterLink}
