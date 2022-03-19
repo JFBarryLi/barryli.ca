@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "AllowJs": true,
+    "jsx": "react-jsx",
+    "baseUrl": "src",
+    "module": "commonjs",
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "skipLibCheck": true
+  },
+  "include": ["src"]
+}
