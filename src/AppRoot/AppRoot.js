@@ -14,6 +14,11 @@ let theme = createTheme({
       main: '#ff005b',
     },
   },
+  mixins: {
+    toolbar: {
+      minHeight: 64,
+    }
+  }
 });
 
 theme = responsiveFontSizes(theme);
