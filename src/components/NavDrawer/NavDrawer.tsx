@@ -107,6 +107,7 @@ const NavDrawer = function ({ drawIsOpen, handleDrawerToggle }: Props) {
       variant="temporary"
       open={drawIsOpen}
       onClose={handleDrawerToggle}
+      onOpen={() => {}}
       ModalProps={{
         keepMounted: true,
       }}
