@@ -1,5 +1,6 @@
 import NavBar from 'components/NavBar';
 import SummaryCard from 'components/SummaryCard';
+import TravelGlobe from 'components/TravelGlobe';
 
 const HomePage = () => (
     <div sx={{
@@ -9,6 +10,7 @@ const HomePage = () => (
     }}>
       <NavBar />
       <SummaryCard />
+      <TravelGlobe />
     </div>
 );
 
