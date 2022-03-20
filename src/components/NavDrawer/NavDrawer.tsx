@@ -15,12 +15,17 @@ import ContactPageIcon from '@mui/icons-material/ContactPage';
 
 import { Link as RouterLink } from 'react-router-dom';
 
+type Props = {
+  drawIsOpen: boolean,
+  handleDrawerToggle: Function,
+}
+
 const drawerWidth = 240;
 
 const iOS =
     typeof navigator !== 'undefined' && /iPad|iPhone|iPod/.test(navigator.userAgent);
 
-const NavDrawer = function (props) {
+const NavDrawer = function ({ drawIsOpen, handleDrawerToggle }: Props) {
   const drawer = (
     <div>
       <Box sx={(theme) => ({
@@ -29,7 +34,7 @@ const NavDrawer = function (props) {
         display: 'flex',
         flexDirection: 'row-reverse',
       })}>
-        <IconButton onClick={props.handleDrawerToggle}>
+        <IconButton onClick={handleDrawerToggle}>
           <ChevronLeftIcon />
         </IconButton>
       </Box>
@@ -37,7 +42,7 @@ const NavDrawer = function (props) {
       <List>
         <ListItem
           button
-          onClick={props.handleDrawerToggle}
+          onClick={handleDrawerToggle}
           component={RouterLink}
           to='/'
         >
@@ -48,7 +53,7 @@ const NavDrawer = function (props) {
         </ListItem>
         <ListItem
           button
-          onClick={props.handleDrawerToggle}
+          onClick={handleDrawerToggle}
           component={RouterLink}
           to='/about'
         >
@@ -59,7 +64,7 @@ const NavDrawer = function (props) {
         </ListItem>
         <ListItem
           button
-          onClick={props.handleDrawerToggle}
+          onClick={handleDrawerToggle}
           component={RouterLink}
           to='/travel'
         >
@@ -70,7 +75,7 @@ const NavDrawer = function (props) {
         </ListItem>
         <ListItem
           button
-          onClick={props.handleDrawerToggle}
+          onClick={handleDrawerToggle}
           component={RouterLink}
           to='/projects'
         >
@@ -84,7 +89,7 @@ const NavDrawer = function (props) {
       <List>
         <ListItem
           button
-          onClick={props.handleDrawerToggle}
+          onClick={handleDrawerToggle}
           component={RouterLink}
           to='/contact'
         >
@@ -100,8 +105,9 @@ const NavDrawer = function (props) {
   return (
     <SwipeableDrawer
       variant="temporary"
-      open={props.drawIsOpen}
-      onClose={props.handleDrawerToggle}
+      open={drawIsOpen}
+      onClose={handleDrawerToggle}
+      onOpen={() => {}}
       ModalProps={{
         keepMounted: true,
       }}

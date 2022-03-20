@@ -1,6 +1,10 @@
 import Typography from '@mui/material/Typography';
 
-const PageHeader = (props) => (
+type Props = {
+  text: string,
+}
+
+const PageHeader = ({ text }: Props) => (
   <Typography variant='h1' component='div' sx={{
     flexGrow: 1,
     margin: '0.5em',
@@ -14,7 +18,7 @@ const PageHeader = (props) => (
       ${theme.palette.secondary.main})
       1`,
   }}>
-    {props.text}
+    {text}
   </Typography>
 );
 
