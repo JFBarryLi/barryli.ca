@@ -1,5 +1,5 @@
 import NavBar from 'components/NavBar';
-import SummaryCard from './components/SummaryCard';
+import SummaryCard from 'components/SummaryCard';
 
 const HomePage = () => (
     <div sx={{
