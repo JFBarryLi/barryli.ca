@@ -1,6 +1,7 @@
+import Box from '@mui/material/Box';
 import Globe from 'react-globe.gl';
 
-import earth from 'assets/maps/earth-night.jpg';
+import earth from 'assets/maps/blank-earth-3600x1800.png';
 
 const N = 20;
 const arcsData = [...Array(N).keys()].map(() => ({
@@ -13,14 +14,24 @@ const arcsData = [...Array(N).keys()].map(() => ({
 
 const TravelGlobe = function() {
  return (
-    <Globe
-      globeImageUrl={earth}
-      arcsData={arcsData}
-      arcColor={'color'}
-      arcDashLength={() => Math.random()}
-      arcDashGap={() => Math.random()}
-      arcDashAnimateTime={() => Math.random() * 4000 + 500}
-    />
+   <Box sx={{
+     margin: 4,
+     display: 'flex',
+     alignItems: 'center',
+     justifyContent: 'center',
+   }}>
+     <Globe
+       height={window.innerWidth/1.25}
+       width={window.innerWidth/1.25}
+       backgroundColor='#ffffff'
+       globeImageUrl={earth}
+       arcsData={arcsData}
+       arcColor={'color'}
+       arcDashLength={() => Math.random()}
+       arcDashGap={() => Math.random()}
+       arcDashAnimateTime={() => Math.random() * 4000 + 500}
+     />
+   </Box>
   )
 }
 
