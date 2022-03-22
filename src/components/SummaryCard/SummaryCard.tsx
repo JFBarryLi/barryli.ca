@@ -3,7 +3,7 @@ import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 
 const firstDayTravelling = '09/30/2021';
-const currentLocation = 'Dzembronya, Ukraine';
+const currentLocation = 'Lviv, Ukraine';
 
 const firstDay = new Date(firstDayTravelling);
 const today = new Date();
