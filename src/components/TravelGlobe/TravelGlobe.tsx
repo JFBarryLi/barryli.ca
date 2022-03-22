@@ -3,14 +3,50 @@ import Globe from 'react-globe.gl';
 
 import earth from 'assets/maps/blank-earth-3600x1800.png';
 
-const N = 20;
-const arcsData = [...Array(N).keys()].map(() => ({
-  startLat: (Math.random() - 0.5) * 180,
-  startLng: (Math.random() - 0.5) * 360,
-  endLat: (Math.random() - 0.5) * 180,
-  endLng: (Math.random() - 0.5) * 360,
-  color: [['red', 'white', 'blue', 'green'][Math.round(Math.random() * 3)], ['red', 'white', 'blue', 'green'][Math.round(Math.random() * 3)]]
-}));
+const travelData = [
+  {
+    day: 1,
+    date: '2021-09-30',
+    startLoc: 'Toronto',
+    startLat: 43.651070,
+    startLng: -79.347015,
+    endLoc: 'Lisbon',
+    endLat: 38.736946,
+    endLng: -9.142685,
+  },
+  {
+    day: 2,
+    date: '2021-09-30',
+    startLoc: 'Lisbon',
+    startLat: 38.736946,
+    startLng: -9.142685,
+    endLoc: 'Lisbon',
+    endLat: 38.736946,
+    endLng: -9.1426855,
+  },
+  {
+    day: 3,
+    date: '2021-09-30',
+    startLoc: 'Lisbon',
+    startLat: 38.736946,
+    startLng: -9.142685,
+    endLoc: 'Lisbon',
+    endLat: 38.736946,
+    endLng: -9.1426855,
+  },
+  {
+    day: 4,
+    date: '2021-10-03',
+    startLoc: 'Lisbon',
+    startLat: 38.736946,
+    startLng: -9.142685,
+    endLoc: 'Lagos',
+    endLat: 37.129665,
+    endLng: -8.669586,
+  },
+];
+
+const arcsData = travelData.filter(d => d.startLoc !== d.endLoc);
 
 const TravelGlobe = function() {
  return (
@@ -26,10 +62,15 @@ const TravelGlobe = function() {
        backgroundColor='#ffffff'
        globeImageUrl={earth}
        arcsData={arcsData}
-       arcColor={'color'}
-       arcDashLength={() => Math.random()}
-       arcDashGap={() => Math.random()}
-       arcDashAnimateTime={() => Math.random() * 4000 + 500}
+       arcLabel={d => `<div style='color:black'>Day ${d.day} - ${d.date}</div>`}
+       arcStartLat={d => d.startLat}
+       arcStartLng={d => d.startLng}
+       arcEndLat={d => d.endLat}
+       arcEndLng={d => d.endLng}
+       arcColor={() => '#ff0000'}
+       arcDashLength={0.5}
+       arcDashGap={1}
+       arcDashAnimateTime={4000}
      />
    </Box>
   )
