@@ -67,8 +67,10 @@ let locationsData = locations
     name: loc.name,
     lat: loc.lat,
     lng: loc.lng,
-    count: travelData.filter(item => item.endLoc === loc.name).length
+    days: travelData.filter(item => item.endLoc === loc.name).length
 }));
+
+const maxDays = Math.max(...locationsData.map(o => o.days), 0);
 
 const TravelGlobe = function() {
  return (
@@ -83,6 +85,14 @@ const TravelGlobe = function() {
        width={window.innerWidth/1.25}
        backgroundColor='#ffffff'
        globeImageUrl={earth}
+
+       pointsData={locationsData}
+       pointLabel={d => `<div style='color:black'>Days spent here: ${d.days}</div>`}
+       pointLat={d => d.lat}
+       pointLng={d => d.lng}
+       pointRadius={() => 0.3}
+       pointAltitude={d => d.days/maxDays * 0.5}
+       pointColor={() => 'blue'}
 
        labelsData={locationsData}
        labelLat={d => d.lat}
