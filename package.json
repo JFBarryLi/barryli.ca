@@ -61,7 +61,7 @@
     },
     "transformIgnorePatterns": [
       "^.+\\.(css|sass|scss)$",
-      "node_modules/(?!(three|\\bd3-[a-z-]*\\b|internmap|delaunator|robust-predicates)/.*)"
+      "node_modules"
     ],
     "moduleNameMapper": {
       "^.+\\.(css|sass|scss)$": "identity-obj-proxy",
