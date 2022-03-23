@@ -6,7 +6,6 @@ import Router from 'routes';
 
 let theme = createTheme({
   palette: {
-    type: 'light',
     primary: {
       main: '#311b92',
     },
