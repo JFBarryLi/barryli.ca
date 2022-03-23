@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, SyntheticEvent } from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -15,7 +15,7 @@ import NavDrawer from 'components/NavDrawer';
 const NavBar = function() {
   const [drawIsOpen, setDrawIsOpen] = useState(false);
 
-  const handleDrawerToggle = () => {
+  const handleDrawerToggle = (event: SyntheticEvent<{}, Event>): void => {
     setDrawIsOpen(!drawIsOpen);
   };
 

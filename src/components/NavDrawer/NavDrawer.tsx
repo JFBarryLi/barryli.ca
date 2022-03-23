@@ -1,3 +1,5 @@
+import { SyntheticEvent } from 'react';
+
 import Box from '@mui/material/Box';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import Divider from '@mui/material/Divider';
@@ -15,15 +17,17 @@ import ContactPageIcon from '@mui/icons-material/ContactPage';
 
 import { Link as RouterLink } from 'react-router-dom';
 
+type EventHandler = (event: SyntheticEvent<{}, Event>) => void;
+
 type Props = {
   drawIsOpen: boolean,
-  handleDrawerToggle: Function,
+  handleDrawerToggle: EventHandler,
 }
 
 const drawerWidth = 240;
 
 const iOS =
-    typeof navigator !== 'undefined' && /iPad|iPhone|iPod/.test(navigator.userAgent);
+  typeof navigator !== 'undefined' && /iPad|iPhone|iPod/.test(navigator.userAgent);
 
 const NavDrawer = function ({ drawIsOpen, handleDrawerToggle }: Props) {
   const drawer = (
