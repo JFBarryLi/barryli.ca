@@ -47,7 +47,7 @@ const NavBar = function() {
             Barry Li
           </Button>
           <IconButton
-            compone='a'
+            component='a'
             href='https://github.com/jfbarryli'
             target='_blank'
             rel='noopener'
@@ -74,7 +74,7 @@ const NavBar = function() {
             <GitHubIcon fontSize='small' />
           </IconButton>
           <IconButton
-            compone='a'
+            component='a'
             href='https://linkedin.com/in/jingfeng-barry-li'
             color='inherit'
             aria-label='LinkedIn'
