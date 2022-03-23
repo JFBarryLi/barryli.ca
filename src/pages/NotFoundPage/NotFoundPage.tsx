@@ -1,9 +1,10 @@
+import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 
 import NavBar from 'components/NavBar';
 
 const NotFoundPage = () => (
-  <div sx={{
+  <Box sx={{
     width: '100%',
     height: '100%',
   }}>
@@ -19,7 +20,7 @@ const NotFoundPage = () => (
     }}>
       404 Page Not Found
     </Typography>
-  </div>
+  </Box>
 );
 
 export default NotFoundPage;

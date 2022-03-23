@@ -1,9 +1,11 @@
+import Box from '@mui/material/Box';
+
 import NavBar from 'components/NavBar';
 import SummaryCard from 'components/SummaryCard';
 import TravelGlobe from 'components/TravelGlobe';
 
 const HomePage = () => (
-    <div sx={{
+    <Box sx={{
       display: 'block',
       width: '100%',
       height: '100%',
@@ -11,7 +13,7 @@ const HomePage = () => (
       <NavBar />
       <SummaryCard />
       <TravelGlobe />
-    </div>
+    </Box>
 );
 
 export default HomePage;

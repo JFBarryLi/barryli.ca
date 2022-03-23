@@ -1,3 +1,4 @@
+import Box from '@mui/material/Box';
 import Link from '@mui/material/Link';
 import Typography from '@mui/material/Typography';
 
@@ -5,7 +6,7 @@ import NavBar from 'components/NavBar';
 import PageHeader from 'components/PageHeader';
 
 const ContactPage = () => (
-  <div sx={{
+  <Box sx={{
     display: 'block',
     width: '100%',
     height: '100%',
@@ -39,7 +40,7 @@ const ContactPage = () => (
         contact@barryli.ca
       </Link>
     </div>
-  </div>
+  </Box>
 );
 
 export default ContactPage;
