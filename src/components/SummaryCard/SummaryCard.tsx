@@ -8,7 +8,8 @@ const currentLocation = 'Lviv, Ukraine';
 const firstDay = new Date(firstDayTravelling);
 const today = new Date();
 
-const currentDay = Math.round((today - firstDay) / (1000*60*60*24));
+// The + here is to coerce the date to a number for Typescript.
+const currentDay = Math.round((+today - +firstDay) / (1000*60*60*24));
 
 const SummaryCard = () => (
   <Card sx={{
