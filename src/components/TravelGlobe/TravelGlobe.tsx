@@ -3,6 +3,27 @@ import Globe from 'react-globe.gl';
 
 import earth from 'assets/maps/blank-earth-3600x1800.png';
 
+interface Travel {
+  day: number;
+  date: string;
+  startLoc: string;
+  startLat: number;
+  startLng: number;
+  endLoc: string;
+  endLat: number;
+  endLng: number;
+}
+
+interface Locations {
+  name: string;
+  lat: number;
+  lng: number;
+}
+
+interface LocationsStat extends Locations {
+  days: number;
+}
+
 const travelData = [
   {
     day: 0,
@@ -56,21 +77,25 @@ const travelData = [
   },
 ];
 
-const arcsData = travelData.filter(d => d.startLoc !== d.endLoc);
+const arcsData = travelData.filter((d: Travel) => d.startLoc !== d.endLoc);
 
 const locations = travelData
-  .map(d => ({name: d.endLoc, lat: d.endLat, lng: d.endLng}))
-  .filter((ele, index, array) => array.findIndex(obj => obj.name === ele.name) === index);
+  .map((d: Travel) => ({name: d.endLoc, lat: d.endLat, lng: d.endLng}))
+  .filter(
+    (ele: Locations, index: number, array) => array.findIndex(
+      (obj: Locations) => obj.name === ele.name
+    ) === index
+  );
 
-let locationsData = locations
-  .map((loc, index) => ({
+const locationsData = locations
+  .map((loc: Locations, index: number) => ({
     name: loc.name,
     lat: loc.lat,
     lng: loc.lng,
-    days: travelData.filter(item => item.endLoc === loc.name).length
+    days: travelData.filter((item: Travel) => item.endLoc === loc.name).length
 }));
 
-const maxDays = Math.max(...locationsData.map(o => o.days), 0);
+const maxDays = Math.max(...locationsData.map((o: LocationsStat) => o.days), 0);
 
 const TravelGlobe = function() {
  return (
@@ -87,27 +112,27 @@ const TravelGlobe = function() {
        globeImageUrl={earth}
 
        pointsData={locationsData}
-       pointLabel={d => `<div style='color:black'>Days spent here: ${d.days}</div>`}
-       pointLat={d => d.lat}
-       pointLng={d => d.lng}
+       pointLabel={(d: any) => `<div style='color:black'>Days spent here: ${d.days}</div>`}
+       pointLat={(d: any) => d.lat}
+       pointLng={(d: any) => d.lng}
        pointRadius={() => 0.3}
-       pointAltitude={d => d.days/maxDays * 0.5}
+       pointAltitude={(d: any) => d.days/maxDays * 0.5}
        pointColor={() => 'blue'}
 
        labelsData={locationsData}
-       labelLat={d => d.lat}
-       labelLng={d => d.lng}
-       labelText={d => d.name}
+       labelLat={(d: any) => d.lat}
+       labelLng={(d: any) => d.lng}
+       labelText={(d: any) => d.name}
        labelSize={() => 1}
        labelDotRadius={() => 0.5}
        labelColor={() => 'orange'}
 
        arcsData={arcsData}
-       arcLabel={d => `<div style='color:black'>Day ${d.day} - ${d.date}</div>`}
-       arcStartLat={d => d.startLat}
-       arcStartLng={d => d.startLng}
-       arcEndLat={d => d.endLat}
-       arcEndLng={d => d.endLng}
+       arcLabel={(d: any) => `<div style='color:black'>Day ${d.day} - ${d.date}</div>`}
+       arcStartLat={(d: any) => d.startLat}
+       arcStartLng={(d: any) => d.startLng}
+       arcEndLat={(d: any) => d.endLat}
+       arcEndLng={(d: any) => d.endLng}
        arcColor={() => '#ff0000'}
        arcDashLength={0.5}
        arcDashGap={1}
