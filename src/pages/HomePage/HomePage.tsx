@@ -1,8 +1,8 @@
 import Box from '@mui/material/Box';
 
 import NavBar from 'components/NavBar';
-import SummaryCard from 'components/SummaryCard';
-import TravelGlobe from 'components/TravelGlobe';
+import SummaryCard from 'visuals/SummaryCard';
+import TravelGlobe from 'visuals/TravelGlobe';
 
 const HomePage = () => (
     <Box sx={{

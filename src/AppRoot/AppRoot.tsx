@@ -1,5 +1,7 @@
 import { BrowserRouter } from "react-router-dom";
 import { ThemeProvider, createTheme, responsiveFontSizes } from '@mui/material/styles';
+import { store } from './store';
+import { Provider } from 'react-redux';
 import '@fontsource/roboto';
 
 import Router from 'routes';
@@ -22,13 +24,15 @@ let theme = createTheme({
 
 theme = responsiveFontSizes(theme);
 
-function App() {
+const App = function() {
   return (
-    <BrowserRouter>
-      <ThemeProvider theme={theme}>
-        <Router />
-      </ThemeProvider>
-    </BrowserRouter>
+    <Provider store={store}>
+      <BrowserRouter>
+        <ThemeProvider theme={theme}>
+          <Router />
+        </ThemeProvider>
+      </BrowserRouter>
+    </Provider>
   );
 }
 
