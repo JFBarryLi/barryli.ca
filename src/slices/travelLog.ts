@@ -28,6 +28,7 @@ interface TravelLogState extends Array<TravelLogItem>{}
 interface TravelLogBasic extends Array<TravelLogItemBasic>{}
 
 interface Location {
+  trip: string;
   name: string;
   lat: number;
   lng: number;

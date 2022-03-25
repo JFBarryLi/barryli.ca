@@ -8,7 +8,10 @@ import TravelLogExample from '../TravelLogExample';
 
 describe('travelLog reducers', () => {
 	it('should handle initial state', () => {
-    expect(travelLog([], {})).toEqual([]);
+    expect(travelLog([], {
+      type: travelLogCreated.type,
+      payload: []
+    })).toEqual([]);
 	});
 
   it('should handle travelLogCreated', () => {
