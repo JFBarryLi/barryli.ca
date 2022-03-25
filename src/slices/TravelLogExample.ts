@@ -1,5 +1,6 @@
 const TravelLog = [
   {
+    trip: 'World Tour 2021-2023',
     day: 0,
     date: '2021-09-30',
     startLoc: 'Toronto',
@@ -13,6 +14,7 @@ const TravelLog = [
     characterCount: 0,
   },
   {
+    trip: 'World Tour 2021-2023',
     day: 1,
     date: '2021-09-30',
     startLoc: 'Toronto',
@@ -26,6 +28,7 @@ const TravelLog = [
     characterCount: 2409,
   },
   {
+    trip: 'World Tour 2021-2023',
     day: 2,
     date: '2021-09-30',
     startLoc: 'Lisbon',
@@ -39,6 +42,7 @@ const TravelLog = [
     characterCount: 52,
   },
   {
+    trip: 'World Tour 2021-2023',
     day: 3,
     date: '2021-09-30',
     startLoc: 'Lisbon',
@@ -52,6 +56,7 @@ const TravelLog = [
     characterCount: 2614,
   },
   {
+    trip: 'World Tour 2021-2023',
     day: 4,
     date: '2021-10-03',
     startLoc: 'Lisbon',

@@ -6,6 +6,7 @@ import { RootState } from 'AppRoot/store';
 import TravelLog from './TravelLogExample';
 
 interface TravelLogItemBasic {
+  trip: string;
   day: number;
   date: string;
   startLoc: string;
@@ -54,7 +55,7 @@ const selectTravelLog = (state: RootState) => state.travelLog;
 const selectTravelLogBasic = (state: RootState) => (
   state.travelLog.map(
     (item: TravelLogItem) => ({
-      day: item.day, date: item.date,
+      trip: item.trip, day: item.day, date: item.date,
       startLoc: item.startLoc, startLat: item.startLat, startLng: item.startLng,
       endLoc: item.endLoc, endLat: item.endLat, endLng: item.endLng,
     })
@@ -69,13 +70,14 @@ const selectTravelPaths = createSelector(
 const selectTravelLocations = createSelector(
   [selectTravelLogBasic], (tLog: TravelLogBasic) => tLog
     .map((item: TravelLogItemBasic) => ({
-      name: item.endLoc, lat: item.endLat, lng: item.endLng}))
+      trip: item.trip, name: item.endLoc, lat: item.endLat, lng: item.endLng}))
     .filter(
       (ele: Location, index: number, array) => array.findIndex(
-        (obj: Location) => obj.name === ele.name
+        (obj: Location) => (obj.name === ele.name && obj.trip === ele.trip)
       ) === index
     )
     .map((loc: Location, index: number) => ({
+      trip: loc.trip,
       name: loc.name,
       lat: loc.lat,
       lng: loc.lng,
