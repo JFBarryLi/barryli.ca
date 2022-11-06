@@ -31,16 +31,16 @@ describe('travelLog reducers', () => {
 
 describe('selectTravelLog', () => {
   it('should select travel log', () => {
-    expect(selectTravelLog({'travelLog': TravelLogExample})).toEqual(TravelLogExample);
+    expect(selectTravelLog(TravelLogExample)).toEqual(TravelLogExample);
   });
 
   it('should select travel log basic version', () => {
-    expect(selectTravelLogBasic({'travelLog': [{
+    expect(selectTravelLogBasic([{
       trip: 'a', day: 1, date: '2000-01-01',
       startLoc: 'NY', startLat: 123, startLng: 123,
       endLoc: 'NJ', endLat: 321, endLng: 321,
       wordCount: 100, sentenceCount: 10, characterCount: 1000
-    }]})).toEqual([{
+    }])).toEqual([{
       trip: 'a', day: 1, date: '2000-01-01',
       startLoc: 'NY', startLat: 123, startLng: 123,
       endLoc: 'NJ', endLat: 321, endLng: 321
@@ -48,7 +48,7 @@ describe('selectTravelLog', () => {
   });
 
   it('should select travel log path', () => {
-    expect(selectTravelPaths({'travelLog': [{
+    expect(selectTravelPaths([{
       trip: 'a', day: 1, date: '2000-01-01',
       startLoc: 'NY', startLat: 123, startLng: 123,
       endLoc: 'NJ', endLat: 321, endLng: 321,
@@ -58,7 +58,7 @@ describe('selectTravelLog', () => {
       startLoc: 'NJ', startLat: 123, startLng: 123,
       endLoc: 'NJ', endLat: 321, endLng: 321,
       wordCount: 100, sentenceCount: 10, characterCount: 1000
-    }]})).toEqual([{
+    }])).toEqual([{
       trip: 'a', day: 1, date: '2000-01-01',
       startLoc: 'NY', startLat: 123, startLng: 123,
       endLoc: 'NJ', endLat: 321, endLng: 321
@@ -66,7 +66,7 @@ describe('selectTravelLog', () => {
   });
 
   it('should select travel locations', () => {
-    expect(selectTravelLocations({'travelLog': [{
+    expect(selectTravelLocations([{
       trip: 'a', day: 1, date: '2000-01-01',
       startLoc: 'NY', startLat: 123, startLng: 123,
       endLoc: 'NJ', endLat: 321, endLng: 321,
@@ -76,13 +76,13 @@ describe('selectTravelLog', () => {
       startLoc: 'NJ', startLat: 123, startLng: 123,
       endLoc: 'NJ', endLat: 321, endLng: 321,
       wordCount: 100, sentenceCount: 10, characterCount: 1000
-    }]})).toEqual([{
+    }])).toEqual([{
       trip: 'a', name: 'NJ', lat: 321, lng: 321, days: 2
     }]);
   });
 
   it('should select max days in a location', () => {
-    expect(selectLocationDaysMax({'travelLog': [{
+    expect(selectLocationDaysMax([{
       trip: 'a', day: 1, date: '2000-01-01',
       startLoc: 'NY', startLat: 123, startLng: 123,
       endLoc: 'NJ', endLat: 321, endLng: 321,
@@ -92,6 +92,6 @@ describe('selectTravelLog', () => {
       startLoc: 'NJ', startLat: 123, startLng: 123,
       endLoc: 'NJ', endLat: 321, endLng: 321,
       wordCount: 100, sentenceCount: 10, characterCount: 1000
-    }]})).toEqual(2);
+    }])).toEqual(2);
   });
 });

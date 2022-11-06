@@ -52,9 +52,9 @@ const travelLog = createSlice({
   }
 });
 
-const selectTravelLog = (state: RootState) => state.travelLog;
-const selectTravelLogBasic = (state: RootState) => (
-  state.travelLog.map(
+const selectTravelLog = (state: RootState['travelLog']) => state;
+const selectTravelLogBasic = (state: RootState['travelLog']) => (
+  state.map(
     (item: TravelLogItem) => ({
       trip: item.trip, day: item.day, date: item.date,
       startLoc: item.startLoc, startLat: item.startLat, startLng: item.startLng,
