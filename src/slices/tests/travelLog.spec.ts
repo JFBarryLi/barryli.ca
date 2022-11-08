@@ -1,3 +1,5 @@
+import { RootState } from 'AppRoot/store';
+
 import travelLog, {
   selectTravelLog, selectTravelLogBasic, selectTravelPaths,
   selectTravelLocations, selectLocationDaysMax,
@@ -31,16 +33,16 @@ describe('travelLog reducers', () => {
 
 describe('selectTravelLog', () => {
   it('should select travel log', () => {
-    expect(selectTravelLog(TravelLogExample)).toEqual(TravelLogExample);
+    expect(selectTravelLog({'travelLog': TravelLogExample} as RootState)).toEqual(TravelLogExample);
   });
 
   it('should select travel log basic version', () => {
-    expect(selectTravelLogBasic([{
+    expect(selectTravelLogBasic({'travelLog': [{
       trip: 'a', day: 1, date: '2000-01-01',
       startLoc: 'NY', startLat: 123, startLng: 123,
       endLoc: 'NJ', endLat: 321, endLng: 321,
       wordCount: 100, sentenceCount: 10, characterCount: 1000
-    }])).toEqual([{
+    }]} as RootState)).toEqual([{
       trip: 'a', day: 1, date: '2000-01-01',
       startLoc: 'NY', startLat: 123, startLng: 123,
       endLoc: 'NJ', endLat: 321, endLng: 321
@@ -48,7 +50,7 @@ describe('selectTravelLog', () => {
   });
 
   it('should select travel log path', () => {
-    expect(selectTravelPaths([{
+    expect(selectTravelPaths({'travelLog': [{
       trip: 'a', day: 1, date: '2000-01-01',
       startLoc: 'NY', startLat: 123, startLng: 123,
       endLoc: 'NJ', endLat: 321, endLng: 321,
@@ -58,7 +60,7 @@ describe('selectTravelLog', () => {
       startLoc: 'NJ', startLat: 123, startLng: 123,
       endLoc: 'NJ', endLat: 321, endLng: 321,
       wordCount: 100, sentenceCount: 10, characterCount: 1000
-    }])).toEqual([{
+    }]} as RootState)).toEqual([{
       trip: 'a', day: 1, date: '2000-01-01',
       startLoc: 'NY', startLat: 123, startLng: 123,
       endLoc: 'NJ', endLat: 321, endLng: 321
@@ -66,7 +68,7 @@ describe('selectTravelLog', () => {
   });
 
   it('should select travel locations', () => {
-    expect(selectTravelLocations([{
+    expect(selectTravelLocations({'travelLog': [{
       trip: 'a', day: 1, date: '2000-01-01',
       startLoc: 'NY', startLat: 123, startLng: 123,
       endLoc: 'NJ', endLat: 321, endLng: 321,
@@ -76,13 +78,13 @@ describe('selectTravelLog', () => {
       startLoc: 'NJ', startLat: 123, startLng: 123,
       endLoc: 'NJ', endLat: 321, endLng: 321,
       wordCount: 100, sentenceCount: 10, characterCount: 1000
-    }])).toEqual([{
+    }]} as RootState)).toEqual([{
       trip: 'a', name: 'NJ', lat: 321, lng: 321, days: 2
     }]);
   });
 
   it('should select max days in a location', () => {
-    expect(selectLocationDaysMax([{
+    expect(selectLocationDaysMax({'travelLog': [{
       trip: 'a', day: 1, date: '2000-01-01',
       startLoc: 'NY', startLat: 123, startLng: 123,
       endLoc: 'NJ', endLat: 321, endLng: 321,
@@ -92,6 +94,6 @@ describe('selectTravelLog', () => {
       startLoc: 'NJ', startLat: 123, startLng: 123,
       endLoc: 'NJ', endLat: 321, endLng: 321,
       wordCount: 100, sentenceCount: 10, characterCount: 1000
-    }])).toEqual(2);
+    }]} as RootState)).toEqual(2);
   });
 });
