@@ -1,5 +1,7 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
+import { unmarshall } from '@aws-sdk/util-dynamodb';
+
 export const travelLogApi = createApi({
   reducerPath: 'travelLogApi',
   baseQuery: fetchBaseQuery({
@@ -14,7 +16,9 @@ export const travelLogApi = createApi({
     getTravelLogByTripName: builder.query({
       query: (tripName: string) => `trips/${tripName}`,
       transformResponse: responseData => {
-        return responseData['Items']
+        const items = responseData['Items'];
+        const unmarshalled = items.map((i) => unmarshall(i));
+        return unmarshalled;
       }
     }),
   }),
