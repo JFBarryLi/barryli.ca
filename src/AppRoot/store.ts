@@ -3,7 +3,7 @@ import { combineReducers } from 'redux';
 import { setupListeners } from '@reduxjs/toolkit/query';
 
 import travelLog from 'slices/travelLog';
-import { travelLogApi } from 'services/travelLog';
+import { travelLogApi } from 'apis/travelLog';
 
 const rootReducer = combineReducers({
   travelLog: travelLog,

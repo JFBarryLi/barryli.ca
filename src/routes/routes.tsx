@@ -6,11 +6,12 @@ import TravelPage from 'pages/TravelPage';
 import ProjectsPage from 'pages/ProjectsPage';
 import ContactPage from 'pages/ContactPage';
 
-import { useGetTravelLogByTripNameQuery } from 'services/travelLog';
+import { useGetTravelLogByTripNameQuery } from 'apis/travelLog';
 
 const Router = function() {
   const { data, error, isLoading } = useGetTravelLogByTripNameQuery('World Tour 2021-2023');
 
+  console.log(data);
   let element = useRoutes([
     { path: '/', element: <HomePage /> },
     { path: '*', element: <NotFoundPage /> },

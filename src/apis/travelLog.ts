@@ -5,6 +5,7 @@ export const travelLogApi = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: 'https://api.barryli.ca/travel_log/',
     prepareHeaders: (headers, { getState }) => {
+      // Not a secret; public api.
       headers.set('X-Api-Key', process.env.REACT_APP_TRAVELLOG_API_KEY as string);
       return headers
     }
@@ -12,6 +13,9 @@ export const travelLogApi = createApi({
   endpoints: (builder) => ({
     getTravelLogByTripName: builder.query({
       query: (tripName: string) => `trips/${tripName}`,
+      transformResponse: responseData => {
+        return responseData['Items']
+      }
     }),
   }),
 });
