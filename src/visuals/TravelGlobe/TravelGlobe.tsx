@@ -1,6 +1,5 @@
 import Box from '@mui/material/Box';
 import Globe from 'react-globe.gl';
-import { useSelector } from 'react-redux';
 
 import { GlobeData } from 'slices/travelGlobeData';
 

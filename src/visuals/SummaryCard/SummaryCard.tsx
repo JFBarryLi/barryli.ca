@@ -5,7 +5,6 @@ import Typography from '@mui/material/Typography';
 import { useSelector } from 'react-redux';
 
 import { selectSummaryCardData } from 'slices/summaryCardData';
-import { SummaryCardData } from 'slices/summaryCardData';
 
 import { useGetTravelLogByTripNameQuery } from 'apis/travelLog';
 

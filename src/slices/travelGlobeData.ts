@@ -1,5 +1,4 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { createSelector } from 'reselect';
 
 import type { RootState } from 'AppRoot/store';
 

@@ -12,7 +12,7 @@ import { globeDataCreated } from 'slices/travelGlobeData';
 import { summaryCardDataCreated } from 'slices/summaryCardData';
 
 const Router = function() {
-  const { data, error, isLoading } = useGetTravelLogByTripNameQuery('World Tour 2021-2023');
+  const { data, isLoading } = useGetTravelLogByTripNameQuery('World Tour 2021-2023');
   const dispatch = useDispatch();
 
   if (!isLoading) {
