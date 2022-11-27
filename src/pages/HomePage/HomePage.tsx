@@ -9,6 +9,10 @@ import { selectGlobeData } from 'slices/travelGlobeData';
 
 const HomePage = () => {
   const globeData = useSelector(selectGlobeData);
+
+  /* The underlying Globe code relies on adding a prop to each item in the data */
+  const mutableGlobeData = JSON.parse(JSON.stringify(globeData));
+
   return (
     <div>
       <Box sx={{
@@ -19,7 +23,7 @@ const HomePage = () => {
         <NavBar />
         <SummaryCard />
       </Box>
-      <TravelGlobe data={globeData} />
+      <TravelGlobe data={mutableGlobeData} />
     </div>
   );
 }
