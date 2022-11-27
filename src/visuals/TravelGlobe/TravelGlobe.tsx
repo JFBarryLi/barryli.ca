@@ -26,7 +26,7 @@ const TravelGlobe = ({ data }: Props) => {
         globeImageUrl={earth}
 
         pointsData={data.travelLocations}
-        pointLabel={(d: any) => `<div style='color:black'>Days spent here: ${d.days}</div>`}
+        pointLabel={(d: any) => `<div><div style='font-weight: 400; font-family: "Roboto","Helvetica","Arial",sans-serif; border-radius: 10px; padding: 0.5em; background-color: orange; color: #00000099'>${d.name} - Total # of days spent here: ${d.days}</div></div>`}
         pointLat={(d: any) => d.lat}
         pointLng={(d: any) => d.lng}
         pointRadius={() => 0.3}
@@ -36,21 +36,10 @@ const TravelGlobe = ({ data }: Props) => {
         labelsData={data.travelLocations}
         labelLat={(d: any) => d.lat}
         labelLng={(d: any) => d.lng}
-        labelText={(d: any) => d.name}
+        labelText={(d: any) => ''}
         labelSize={() => 1}
         labelDotRadius={() => 0.5}
         labelColor={() => 'orange'}
-
-        arcsData={data.travelPaths}
-        arcLabel={(d: any) => `<div style='color:black'>Day ${d.day} - ${d.date}</div>`}
-        arcStartLat={(d: any) => d.startLat}
-        arcStartLng={(d: any) => d.startLng}
-        arcEndLat={(d: any) => d.endLat}
-        arcEndLng={(d: any) => d.endLng}
-        arcColor={() => '#ff0000'}
-        arcDashLength={0.5}
-        arcDashGap={1}
-        arcDashAnimateTime={4000}
       />
    </Box>
   )
