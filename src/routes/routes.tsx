@@ -1,4 +1,5 @@
-import { useRoutes } from "react-router-dom";
+import { useDispatch } from 'react-redux';
+import { useRoutes } from 'react-router-dom';
 import HomePage from 'pages/HomePage';
 import NotFoundPage from 'pages/NotFoundPage';
 import AboutPage from 'pages/AboutPage';
@@ -7,11 +8,17 @@ import ProjectsPage from 'pages/ProjectsPage';
 import ContactPage from 'pages/ContactPage';
 
 import { useGetTravelLogByTripNameQuery } from 'apis/travelLog';
+import { globeDataCreated } from 'slices/travelGlobeData';
 
 const Router = function() {
   const { data, error, isLoading } = useGetTravelLogByTripNameQuery('World Tour 2021-2023');
 
-  console.log(data);
+  const dispatch = useDispatch();
+
+  if (!isLoading) {
+    dispatch(globeDataCreated(data));
+  }
+
   let element = useRoutes([
     { path: '/', element: <HomePage /> },
     { path: '*', element: <NotFoundPage /> },

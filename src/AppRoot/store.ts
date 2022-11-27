@@ -1,18 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { combineReducers } from 'redux';
 import { setupListeners } from '@reduxjs/toolkit/query';
 
-import travelLog from 'slices/travelLog';
+import travelGlobeData from 'slices/travelGlobeData';
 import { travelLogApi } from 'apis/travelLog';
-
-const rootReducer = combineReducers({
-  travelLog: travelLog,
-  [travelLogApi.reducerPath]: travelLogApi.reducer,
-});
 
 export const store = configureStore({
   reducer: {
-    travelLog: travelLog,
+    travelGlobeData: travelGlobeData,
     [travelLogApi.reducerPath]: travelLogApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>

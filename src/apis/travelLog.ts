@@ -15,9 +15,9 @@ export const travelLogApi = createApi({
   endpoints: (builder) => ({
     getTravelLogByTripName: builder.query({
       query: (tripName: string) => `trips/${tripName}`,
-      transformResponse: responseData => {
+      transformResponse: (responseData: any) => {
         const items = responseData['Items'];
-        const unmarshalled = items.map((i) => unmarshall(i));
+        const unmarshalled = items.map((i: any) => unmarshall(i));
         return unmarshalled;
       }
     }),
