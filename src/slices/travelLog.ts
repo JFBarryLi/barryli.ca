@@ -52,7 +52,7 @@ export type {
   TravelLogItemBasic,
   TravelLogItem,
   TravelLogState,
-  TravelLogBasic
+  TravelLogBasic,
   Sentiment,
   LocationStat,
   TravelLocations,

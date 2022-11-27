@@ -2,34 +2,37 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 
-const firstDayTravelling = '09/30/2021';
-const currentLocation = 'Lviv, Ukraine';
+import { useSelector } from 'react-redux';
 
-const firstDay = new Date(firstDayTravelling);
-const today = new Date();
+import { selectSummaryCardData } from 'slices/summaryCardData';
+import { SummaryCardData } from 'slices/summaryCardData';
 
-// The + here is to coerce the date to a number for Typescript.
-const currentDay = Math.round((+today - +firstDay) / (1000*60*60*24));
+import { useGetTravelLogByTripNameQuery } from 'apis/travelLog';
 
-const SummaryCard = () => (
-  <Card sx={{
-    minWidth: 150,
-    width: '50%',
-    margin: 'auto',
-    marginTop: '3em',
-  }}>
-    <CardContent>
-      <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-        On The Road
-      </Typography>
-      <Typography sx={{ m: 2 }} variant="h5" color='text.secondary' component='div'>
-        Day {currentDay}
-      </Typography>
-      <Typography sx={{ m: 2 }} color='text.secondary'>
-        📍 {currentLocation}
-      </Typography>
-    </CardContent>
-  </Card>
-);
+const SummaryCard = () => {
+  const cardData = useSelector(selectSummaryCardData);
+  const { isLoading } = useGetTravelLogByTripNameQuery('World Tour 2021-2023');
+
+  return (
+    <Card sx={{
+      minWidth: 150,
+      width: '50%',
+      margin: 'auto',
+      marginTop: '3em',
+    }}>
+      <CardContent>
+        <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
+          On The Road
+        </Typography>
+        <Typography sx={{ m: 2 }} variant="h5" color='text.secondary' component='div'>
+          Day {cardData.currentDay}
+        </Typography>
+        <Typography sx={{ m: 2 }} color='text.secondary'>
+          📍 {isLoading ? 'Retrieving...' : cardData.currentLocation}
+        </Typography>
+      </CardContent>
+    </Card>
+  )
+};
 
 export default SummaryCard;

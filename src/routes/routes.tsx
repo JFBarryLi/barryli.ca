@@ -9,14 +9,15 @@ import ContactPage from 'pages/ContactPage';
 
 import { useGetTravelLogByTripNameQuery } from 'apis/travelLog';
 import { globeDataCreated } from 'slices/travelGlobeData';
+import { summaryCardDataCreated } from 'slices/summaryCardData';
 
 const Router = function() {
   const { data, error, isLoading } = useGetTravelLogByTripNameQuery('World Tour 2021-2023');
-
   const dispatch = useDispatch();
 
   if (!isLoading) {
     dispatch(globeDataCreated(data));
+    dispatch(summaryCardDataCreated(data));
   }
 
   let element = useRoutes([

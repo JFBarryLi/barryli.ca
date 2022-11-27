@@ -11,7 +11,6 @@ interface Props {
 }
 
 const TravelGlobe = ({ data }: Props) => {
-  console.log(data);
   return (
     <Box sx={{
       margin: 4,

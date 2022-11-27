@@ -4,11 +4,12 @@ import { createSelector } from 'reselect';
 import type { RootState } from 'AppRoot/store';
 
 import type {
-
+  TravelLogItem,
+  TravelLogState,
 } from 'slices/travelLog';
 
 interface SummaryCardData {
-  currentLocations: string;
+  currentLocation: string;
   firstDayTravelling: string;
   currentDay: number;
 }
@@ -25,44 +26,26 @@ const initialState: SummaryCardData = {
   currentDay: currentDay,
 };
 
-const SummaryCardData = createSlice({
+const summaryCardData = createSlice({
   name: 'SummaryCardData',
   initialState,
   reducers: {
-    SummaryCardDataCreated(state, action: PayloadAction<TravelLogState>) {
-      state.travelLocations = action.paylaod
-        .map((item: TravelLogItemBasic) => ({
-          trip: item.TripName, name: item.EndLoc, lat: item.EndLat, lng: item.EndLng}))
-        .filter(
-          (ele: Location, index: number, array: Array<Location>) => array.findIndex(
-            (obj: Location) => (obj.name === ele.name && obj.trip === ele.trip)
-          ) === index
-        )
-        .map((loc: Location, index: number) => ({
-          trip: loc.trip,
-          name: loc.name,
-          lat: loc.lat,
-          lng: loc.lng,
-          days: travelLogBasic.filter((item: TravelLogItemBasic) => item.EndLoc === loc.name).length
-        }));
-
-      state.maxDays = Math.max(
-        ...state.travelLocations.map((loc: LocationStat) => loc.days), 0
-      );
+    summaryCardDataCreated(state, action: PayloadAction<TravelLogState>) {
+      let latestEntryDay = Math.max(...action.payload.map((o: TravelLogItem) => o.Day));
+      state.currentLocation = action.payload
+        .filter((o: TravelLogItem) => o.Day === latestEntryDay)[0].EndLoc
     }
   }
 });
 
 export const {
-  globeDataCreated,
-} = travelGlobeData.actions;
+  summaryCardDataCreated,
+} = summaryCardData.actions;
 
-export const selectGlobeData = (state: RootState) => state.travelGlobeData;
+export const selectSummaryCardData = (state: RootState) => state.summaryCardData;
 
-export default travelGlobeData.reducer;
+export default summaryCardData.reducer;
 
 export type {
-  TravelLogItem,
-  TravelLogState,
-  GlobeData,
+  SummaryCardData,
 }
