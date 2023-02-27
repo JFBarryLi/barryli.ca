@@ -38,6 +38,19 @@ const TravelGlobe = ({ data }: Props) => {
         labelSize={() => 1}
         labelDotRadius={() => 0.5}
         labelColor={() => 'orange'}
+
+        arcsData={data.travelPaths}
+        arcLabel={(d: any) => `<div><div style='font-weight: 400; font-family: "Roboto","Helvetica","Arial",sans-serif; border-radius: 10px; padding: 0.5em; background-color: orange; color: #00000099'>Day ${d.Day} - ${d.Date} <br />${d.StartLoc} → ${d.EndLoc}</div></div>`}
+        arcStartLat={(d: any) => d.StartLat}
+        arcStartLng={(d: any) => d.StartLng}
+        arcEndLat={(d: any) => d.EndLat}
+        arcEndLng={(d: any) => d.EndLng}
+        arcColor={() => '#ff0000'}
+        arcDashLength={0.5}
+        arcDashInitialGap={() => Math.random()}
+        arcDashGap={1}
+        arcDashAnimateTime={5000}
+        arcStroke={0.5}
       />
    </Box>
   )

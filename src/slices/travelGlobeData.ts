@@ -40,7 +40,7 @@ const travelGlobeData = createSlice({
       );
 
       state.travelPaths = travelLogBasic
-        .filter((item: TravelLogItemBasic) => item.StartLoc !== item.EndLoc);
+        .filter((item: TravelLogItemBasic) => item.StartLoc !== item.EndLoc)
 
       state.travelLocations = travelLogBasic
         .map((item: TravelLogItemBasic) => ({
