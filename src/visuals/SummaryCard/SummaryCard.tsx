@@ -21,7 +21,7 @@ const SummaryCard = () => {
     }}>
       <CardContent>
         <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-          On The Road
+          World Tour 2021 - 2023
         </Typography>
         <Typography sx={{ m: 2 }} variant="h5" color='text.secondary' component='div'>
           Day {cardData.currentDay}
