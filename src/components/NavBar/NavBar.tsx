@@ -73,31 +73,6 @@ const NavBar = function() {
           >
             <GitHubIcon fontSize='small' />
           </IconButton>
-          <IconButton
-            component='a'
-            href='https://linkedin.com/in/jingfeng-barry-li'
-            color='inherit'
-            aria-label='LinkedIn'
-            sx={{
-              mr: 1,
-              position: 'relative',
-              p: '6.5px',
-              borderRadius: 1,
-              border: '1px solid',
-              color: 'grey.100',
-              bgcolor: 'transparent',
-              borderColor: 'grey.200',
-              '& svg': { width: 18, height: 18 },
-              '&:focus': {
-                boxShadow: (theme) =>
-                  `0 0 0 1px ${
-                    theme.palette.grey[200]
-                  }`,
-              },
-            }}
-          >
-            <LinkedInIcon fontSize='small' />
-          </IconButton>
         </Toolbar>
       </AppBar>
     </Box>
