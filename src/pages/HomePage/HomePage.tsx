@@ -5,7 +5,7 @@ import NavBar from 'components/NavBar';
 import SummaryCard from 'visuals/SummaryCard';
 import TravelGlobe from 'visuals/TravelGlobe';
 
-import { selectGlobeData } from 'slices/travelGlobeData';
+import { selectGlobeData } from 'slices/travelLog';
 
 const HomePage = () => {
   const globeData = useSelector(selectGlobeData);

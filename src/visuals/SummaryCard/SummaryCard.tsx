@@ -4,7 +4,7 @@ import Typography from '@mui/material/Typography';
 
 import { useSelector } from 'react-redux';
 
-import { selectSummaryCardData } from 'slices/summaryCardData';
+import { selectSummaryCardData } from 'slices/travelLog';
 
 import { useGetTravelLogByTripNameQuery } from 'apis/travelLog';
 

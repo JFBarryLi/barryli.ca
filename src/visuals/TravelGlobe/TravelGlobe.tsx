@@ -1,7 +1,7 @@
 import Box from '@mui/material/Box';
 import Globe from 'react-globe.gl';
 
-import { GlobeData } from 'slices/travelGlobeData';
+import { GlobeData } from 'slices/travelLog';
 
 import earth from 'assets/maps/blank-earth-3600x1800.png';
 

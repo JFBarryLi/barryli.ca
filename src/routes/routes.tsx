@@ -8,16 +8,20 @@ import ProjectsPage from 'pages/ProjectsPage';
 import ContactPage from 'pages/ContactPage';
 
 import { useGetTravelLogByTripNameQuery } from 'apis/travelLog';
-import { globeDataCreated } from 'slices/travelGlobeData';
-import { summaryCardDataCreated } from 'slices/summaryCardData';
+import {
+  travelLogCreated,
+  globeDataCreated,
+  summaryCardDataCreated
+} from 'slices/travelLog';
 
 const Router = function() {
   const { data, isLoading } = useGetTravelLogByTripNameQuery('World Tour 2021-2023');
   const dispatch = useDispatch();
 
   if (!isLoading) {
-    dispatch(globeDataCreated(data));
-    dispatch(summaryCardDataCreated(data));
+    dispatch(travelLogCreated(data));
+    dispatch(globeDataCreated());
+    dispatch(summaryCardDataCreated());
   }
 
   let element = useRoutes([

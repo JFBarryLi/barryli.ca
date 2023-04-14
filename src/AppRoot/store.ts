@@ -1,14 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { setupListeners } from '@reduxjs/toolkit/query';
 
-import travelGlobeData from 'slices/travelGlobeData';
-import summaryCardData from 'slices/summaryCardData';
+import travelLog from 'slices/travelLog';
 import { travelLogApi } from 'apis/travelLog';
 
 export const store = configureStore({
   reducer: {
-    travelGlobeData: travelGlobeData,
-    summaryCardData: summaryCardData,
+    travelLog: travelLog,
     [travelLogApi.reducerPath]: travelLogApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
