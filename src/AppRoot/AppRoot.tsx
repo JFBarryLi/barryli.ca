@@ -1,3 +1,4 @@
+import { useDispatch } from 'react-redux';
 import { BrowserRouter } from "react-router-dom";
 import { ThemeProvider, createTheme, responsiveFontSizes } from '@mui/material/styles';
 import { store } from './store';
@@ -5,6 +6,13 @@ import { Provider } from 'react-redux';
 import '@fontsource/roboto';
 
 import Router from 'routes';
+
+import { useGetTravelLogByTripNameQuery } from 'apis/travelLog';
+import {
+  travelLogCreated,
+  globeDataCreated,
+  summaryCardDataCreated
+} from 'slices/travelLog';
 
 let theme = createTheme({
   palette: {
@@ -24,10 +32,24 @@ let theme = createTheme({
 
 theme = responsiveFontSizes(theme);
 
+const DataLayer = function() {
+  const { data, isLoading } = useGetTravelLogByTripNameQuery('World Tour 2021-2023');
+  const dispatch = useDispatch();
+
+  if (!isLoading) {
+    dispatch(travelLogCreated(data));
+    dispatch(globeDataCreated());
+    dispatch(summaryCardDataCreated());
+  }
+
+  return(null);
+}
+
 const App = function() {
   return (
     <Provider store={store}>
-      <BrowserRouter>
+      <DataLayer />
+			<BrowserRouter>
         <ThemeProvider theme={theme}>
           <Router />
         </ThemeProvider>
