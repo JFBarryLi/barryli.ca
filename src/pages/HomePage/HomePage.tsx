@@ -5,13 +5,36 @@ import NavBar from 'components/NavBar';
 import SummaryCard from 'visuals/SummaryCard';
 import TravelGlobe from 'visuals/TravelGlobe';
 
-import { selectGlobeData } from 'slices/travelLog';
+import { useGetTravelLogByTripNameQuery } from 'apis/travelLog';
+
+import {
+  selectTravelPaths,
+  selectTravelLocations,
+  selectMaxDays,
+  selectCurrentLocation,
+} from 'slices/travelLog';
 
 const HomePage = () => {
-  const globeData = useSelector(selectGlobeData);
+  const { isLoading } = useGetTravelLogByTripNameQuery('World Tour 2021-2023');
 
-  /* The underlying Globe code relies on adding a prop to each item in the data */
-  const mutableGlobeData = JSON.parse(JSON.stringify(globeData));
+  const travelPaths = useSelector(selectTravelPaths);
+  const travelLocations = useSelector(selectTravelLocations);
+  const maxDays = useSelector(selectMaxDays);
+  const globeData = {
+    travelPaths: travelPaths,
+    travelLocations: travelLocations,
+    maxDays: maxDays,
+  }
+
+  const firstDay = new Date('09/30/2021');
+  const today = new Date();
+  // The + here is to coerce the date to a number for Typescript.
+  const currentDay = Math.round((+today - +firstDay) / (1000*60*60*24));
+  const currentLocation = useSelector(selectCurrentLocation);  
+  const summaryCardData = {
+    currentDay: currentDay,
+    currentLocation: isLoading ? 'Retrieving...' : currentLocation,
+   }
 
   return (
     <div>
@@ -21,9 +44,9 @@ const HomePage = () => {
         height: '100%',
       }}>
         <NavBar />
-        <SummaryCard />
+        <SummaryCard data={summaryCardData} />
       </Box>
-      <TravelGlobe data={mutableGlobeData} />
+      <TravelGlobe data={globeData} />
     </div>
   );
 }

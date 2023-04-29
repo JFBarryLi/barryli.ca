@@ -2,16 +2,13 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 
-import { useSelector } from 'react-redux';
+import { SummaryCardData } from 'slices/travelLog';
 
-import { selectSummaryCardData } from 'slices/travelLog';
+interface Props {
+  data: SummaryCardData;
+}
 
-import { useGetTravelLogByTripNameQuery } from 'apis/travelLog';
-
-const SummaryCard = () => {
-  const cardData = useSelector(selectSummaryCardData);
-  const { isLoading } = useGetTravelLogByTripNameQuery('World Tour 2021-2023');
-
+const SummaryCard = ({ data }: Props) => {
   return (
     <Card sx={{
       minWidth: 150,
@@ -24,10 +21,10 @@ const SummaryCard = () => {
           World Tour 2021 - 2023
         </Typography>
         <Typography sx={{ m: 2 }} variant="h5" color='text.secondary' component='div'>
-          Day {cardData.currentDay}
+          Day {data.currentDay}
         </Typography>
         <Typography sx={{ m: 2 }} color='text.secondary'>
-          📍 {isLoading ? 'Retrieving...' : cardData.currentLocation}
+          📍 {data.currentLocation}
         </Typography>
       </CardContent>
     </Card>

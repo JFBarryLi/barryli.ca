@@ -10,8 +10,6 @@ import Router from 'routes';
 import { useGetTravelLogByTripNameQuery } from 'apis/travelLog';
 import {
   travelLogCreated,
-  globeDataCreated,
-  summaryCardDataCreated
 } from 'slices/travelLog';
 
 let theme = createTheme({
@@ -38,8 +36,6 @@ const DataLayer = function() {
 
   if (!isLoading) {
     dispatch(travelLogCreated(data));
-    dispatch(globeDataCreated());
-    dispatch(summaryCardDataCreated());
   }
 
   return(null);
