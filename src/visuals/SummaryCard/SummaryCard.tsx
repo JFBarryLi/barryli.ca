@@ -26,6 +26,9 @@ const SummaryCard = ({ data }: Props) => {
         <Typography sx={{ m: 2 }} color='text.secondary'>
           📍 {data.currentLocation}
         </Typography>
+        <Typography sx={{ m: 2 }} color='text.secondary'>
+          {data.countryCount} Countries
+        </Typography>
       </CardContent>
     </Card>
   )

@@ -1,5 +1,6 @@
 import { useSelector } from 'react-redux';
 import Box from '@mui/material/Box';
+import LinearProgress from '@mui/material/LinearProgress';
 
 import NavBar from 'components/NavBar';
 import SummaryCard from 'visuals/SummaryCard';
@@ -12,6 +13,7 @@ import {
   selectTravelLocations,
   selectMaxDays,
   selectCurrentLocation,
+  selectCountryCount,
 } from 'slices/travelLog';
 
 const HomePage = () => {
@@ -30,10 +32,15 @@ const HomePage = () => {
   const today = new Date();
   // The + here is to coerce the date to a number for Typescript.
   const currentDay = Math.round((+today - +firstDay) / (1000*60*60*24));
-  const currentLocation = useSelector(selectCurrentLocation);  
+  const currentLocation = useSelector(selectCurrentLocation);
+  const countryCount = useSelector(selectCountryCount);
   const summaryCardData = {
     currentDay: currentDay,
-    currentLocation: isLoading ? 'Retrieving...' : currentLocation,
+    currentLocation: isLoading ? <
+      LinearProgress
+      color = 'primary'
+    /> : currentLocation,
+    countryCount: countryCount,
    }
 
   return (

@@ -63,8 +63,9 @@ interface GlobeData {
 }
 
 interface SummaryCardData {
-  currentLocation: string | undefined;
+  currentLocation: string | undefined | JSX.Element;
   currentDay: number;
+  countryCount: number | undefined;
 }
 
 interface TravelLog {
@@ -141,6 +142,19 @@ export const selectCurrentLocation = createSelector(
       const currentLocation = travelLog
         .filter((o: TravelLogItem) => o.Day === latestEntryDay)[0].EndLoc;
       return currentLocation
+    } else {
+      return undefined
+    }
+  }
+);
+
+export const selectCountryCount = createSelector(
+  [selectTravelLog],
+  travelLog => {
+    if (travelLog.length !== 0) {
+      return  new Set(
+        travelLog.map((o: TravelLogItem) => o.EndCountry)
+      ).size
     } else {
       return undefined
     }
