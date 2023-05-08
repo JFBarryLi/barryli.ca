@@ -161,6 +161,19 @@ export const selectCountryCount = createSelector(
   }
 );
 
+export const selectWordCount = createSelector(
+  [selectTravelLog],
+  travelLog => {
+    if (travelLog.length !== 0) {
+      return travelLog.reduce((accum, tLog) => {
+        return accum + tLog.WordCount;
+      }, 0)
+    } else {
+      return undefined
+    }
+  }
+);
+
 export default travelLog.reducer;
 
 export type {

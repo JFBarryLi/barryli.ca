@@ -8,6 +8,7 @@ import SummaryStats from 'visuals/SummaryStats';
 
 import {
   selectCountryCount,
+  selectWordCount,
 } from 'slices/travelLog';
 
 const TravelPage = () => {
@@ -17,6 +18,14 @@ const TravelPage = () => {
     stats: countryCount,
     description: 'Countries Visited',
   }
+
+  const wordCount = useSelector(selectWordCount);
+  const wordCountSummaryStats = {
+    title: '',
+    stats: wordCount,
+    description: 'Words Written',
+  }
+
   return (
     <Box sx={{
       display: 'block',
@@ -25,6 +34,7 @@ const TravelPage = () => {
     }}>
       <NavBar />
       <SummaryStats data={countryCountSummaryStats} />
+      <SummaryStats data={wordCountSummaryStats} />
     </Box>
   );
 }

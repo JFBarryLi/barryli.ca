@@ -1,6 +1,7 @@
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
+import CircularProgress from '@mui/material/CircularProgress';
 
 interface SummaryStatsData {
   title: string | undefined;
@@ -16,15 +17,19 @@ const SummaryStats = ({ data }: Props) => {
   return (
     <Card sx={{
       minWidth: 150,
-      width: '100%',
+      width: '80%',
       margin: 'auto',
+      marginTop: '2em',
     }}>
       <CardContent>
         <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
           {data.title}
         </Typography>
         <Typography sx={{ m: 2, fontSize: 72 }} variant="h1" color='text.primary' component='div'>
-          {data.stats}
+          {data.stats ? Intl.NumberFormat('en-US', {
+            notation: "compact",
+            maximumFractionDigits: 1,
+          }).format(data.stats) : <CircularProgress color='primary' />}
         </Typography>
         <Typography sx={{ m: 2, fontSize: 36 }} color='text.secondary' component='div'>
           {data.description}
