@@ -2,6 +2,8 @@ import { createSlice, PayloadAction, createSelector } from '@reduxjs/toolkit';
 
 import type { RootState } from 'AppRoot/store';
 
+import haversineDistance from 'utils/haversine';
+
 interface TravelLogItemBasic {
   TripName: string;
   Day: number;
@@ -141,9 +143,9 @@ export const selectCurrentLocation = createSelector(
       const latestEntryDay = Math.max(...travelLog.map((o: TravelLogItem) => o.Day));
       const currentLocation = travelLog
         .filter((o: TravelLogItem) => o.Day === latestEntryDay)[0].EndLoc;
-      return currentLocation
+      return currentLocation;
     } else {
-      return undefined
+      return undefined;
     }
   }
 );
@@ -156,7 +158,7 @@ export const selectCountryCount = createSelector(
         travelLog.map((o: TravelLogItem) => o.EndCountry)
       ).size
     } else {
-      return undefined
+      return undefined;
     }
   }
 );
@@ -169,7 +171,25 @@ export const selectWordCount = createSelector(
         return accum + tLog.WordCount;
       }, 0)
     } else {
-      return undefined
+      return undefined;
+    }
+  }
+);
+
+export const selectTotalHaversineDistance = createSelector(
+  [selectTravelPaths],
+  travelPaths => {
+    if (travelPaths.length !== 0) {
+      return travelPaths.reduce((accum, tPath) => {
+        return accum + haversineDistance(
+          tPath.StartLat,
+          tPath.StartLng,
+          tPath.EndLat,
+          tPath.EndLng,
+        )
+      }, 0)
+    } else {
+      return undefined;
     }
   }
 );

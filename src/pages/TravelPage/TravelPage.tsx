@@ -9,6 +9,7 @@ import SummaryStats from 'visuals/SummaryStats';
 import {
   selectCountryCount,
   selectWordCount,
+  selectTotalHaversineDistance,
 } from 'slices/travelLog';
 
 const TravelPage = () => {
@@ -26,6 +27,13 @@ const TravelPage = () => {
     description: 'Words Written',
   }
 
+  const totalHaversineDistance = useSelector(selectTotalHaversineDistance);
+  const totalHaversineDistanceSummaryStats = {
+    title: '',
+    stats: totalHaversineDistance,
+    description: 'KM Traveled As The Crow Flies'
+  }
+
   return (
     <Box sx={{
       display: 'block',
@@ -35,6 +43,7 @@ const TravelPage = () => {
       <NavBar />
       <SummaryStats data={countryCountSummaryStats} />
       <SummaryStats data={wordCountSummaryStats} />
+      <SummaryStats data={totalHaversineDistanceSummaryStats} />
     </Box>
   );
 }
