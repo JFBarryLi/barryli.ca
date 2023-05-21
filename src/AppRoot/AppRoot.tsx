@@ -21,6 +21,9 @@ let theme = createTheme({
       main: '#ff005b',
     },
   },
+  typography: {
+    'fontFamily': 'Roboto',
+  },
   mixins: {
     toolbar: {
       minHeight: 64,
