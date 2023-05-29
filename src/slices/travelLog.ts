@@ -83,7 +83,9 @@ const travelLog = createSlice({
   initialState,
   reducers: {
     travelLogCreated(state, action: PayloadAction<TravelLogData>) {
-      state.travelLogData = action.payload;
+      if (action.payload !== undefined) {
+        state.travelLogData = action.payload;
+      }
     },
   }
 });
