@@ -196,6 +196,20 @@ export const selectTotalHaversineDistance = createSelector(
   }
 );
 
+export const selectCountryByDays = createSelector(
+  [selectTravelLog],
+  travelLog => {
+    if (travelLog.length !== 0) {
+			return travelLog.reduce((acc, curr) => {
+        acc[curr['EndCountry']] = (acc[curr['EndCountry']] ?? 0) + 1;
+        return acc;
+      }, {});
+    } else {
+      return {};
+    }
+  }
+);
+
 export default travelLog.reducer;
 
 export type {
