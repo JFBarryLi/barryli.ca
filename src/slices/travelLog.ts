@@ -210,6 +210,20 @@ export const selectCountryByDays = createSelector(
   }
 );
 
+export const selectPlaceByDays = createSelector(
+  [selectTravelLog],
+  travelLog => {
+    if (travelLog.length !== 0) {
+      return travelLog.reduce((acc: any, curr) => {
+        acc[curr['EndLoc']] = (acc[curr['EndLoc']] ?? 0) + 1;
+        return acc;
+      }, {});
+    } else {
+      return {};
+    }
+  }
+);
+
 export default travelLog.reducer;
 
 export type {

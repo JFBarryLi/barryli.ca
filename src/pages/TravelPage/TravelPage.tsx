@@ -11,6 +11,7 @@ import {
   selectWordCount,
   selectTotalHaversineDistance,
   selectCountryByDays,
+  selectPlaceByDays,
 } from 'slices/travelLog';
 
 const TravelPage = () => {
@@ -41,11 +42,20 @@ const TravelPage = () => {
       'country': key,
       'days': countryByDaysObj[key as keyof typeof countryByDaysObj]
     }
-  }).sort(function(a, b){
+  }).sort((a, b) => {
     return b.days - a.days;
   });
-
   const countriesToShow = countryByDays.map((v,i) => i % 3 === 0 ? v.country : '');
+
+  const placeByDaysObj = useSelector(selectPlaceByDays);
+  const placeByDays = Object.keys(placeByDaysObj).map((key) => {
+    return {
+      'place': key,
+      'days': placeByDaysObj[key as keyof typeof placeByDaysObj]
+    }
+  }).sort((a, b) => {
+    return b.days - a.days;
+  }).slice(0, 10);
 
   return (
     <Box sx={{
@@ -119,6 +129,63 @@ const TravelPage = () => {
               }}
               role="application"
               ariaLabel="Country By Days Bar chart"
+            />
+          </Box>
+        </Grid>
+        <Grid item xs={12} lg={6}>
+          <Box sx={{
+            height: '500px',
+            width: '100%',
+          }}>
+            <ResponsiveBar
+              data={placeByDays}
+              keys={['days']}
+              indexBy={'place'}
+              margin={{ top: 100, right: 100, bottom: 100, left: 100 }}
+              padding={0.3}
+              valueScale={{ type: 'linear' }}
+              indexScale={{ type: 'band', round: true }}
+              colors={{ scheme: 'nivo' }}
+              borderColor={{
+                from: 'color',
+                modifiers: [
+                  [
+                    'darker',
+                    1.6
+                  ]
+                ]
+              }}
+              axisTop={null}
+              axisBottom={{
+                tickSize: 5,
+                tickPadding: 5,
+                tickRotation: 90,
+                legend: '',
+                legendPosition: 'middle',
+                legendOffset: 32
+              }}
+              axisRight={null}
+              axisLeft={{
+                tickSize: 5,
+                tickPadding: 5,
+                tickRotation: 0,
+                legend: 'Days',
+                legendPosition: 'middle',
+                legendOffset: -40
+              }}
+              labelSkipWidth={12}
+              labelSkipHeight={12}
+              labelTextColor={{
+                from: 'color',
+                modifiers: [
+                  [
+                    'darker',
+                    1.6
+                  ]
+                ]
+              }}
+              role="application"
+              ariaLabel="Top Place By Days Bar chart"
             />
           </Box>
         </Grid>
