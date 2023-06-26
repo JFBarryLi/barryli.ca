@@ -40,7 +40,7 @@ const TravelPage = () => {
   const countryByDays = Object.keys(countryByDaysObj).map((key) => {
     return {
       'country': key,
-      'days': countryByDaysObj[key]
+      'days': countryByDaysObj[key as keyof typeof countryByDaysObj]
     }
   }).sort(function(a, b){
     return b.days - a.days;
