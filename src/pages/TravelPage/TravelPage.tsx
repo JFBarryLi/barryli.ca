@@ -1,7 +1,6 @@
 import { useSelector } from 'react-redux';
 
-import Box from '@mui/material/Box';
-
+import { Box, Grid} from '@mui/material';
 import NavBar from 'components/NavBar';
 
 import SummaryStats from 'visuals/SummaryStats';
@@ -55,65 +54,75 @@ const TravelPage = () => {
       height: '100%',
     }}>
       <NavBar />
-      <SummaryStats data={countryCountSummaryStats} />
-      <SummaryStats data={wordCountSummaryStats} />
-      <SummaryStats data={totalHaversineDistanceSummaryStats} />
-      <Box sx={{
-        height: '500px',
-        width: '100%',
-      }}>
-        <ResponsiveBar
-          data={countryByDays}
-          keys={['days']}
-          indexBy={'country'}
-          margin={{ top: 100, right: 100, bottom: 100, left: 100 }}
-          padding={0.3}
-          valueScale={{ type: 'linear' }}
-          indexScale={{ type: 'band', round: true }}
-          colors={{ scheme: 'nivo' }}
-          borderColor={{
-            from: 'color',
-            modifiers: [
-              [
-                'darker',
-                1.6
-              ]
-            ]
-          }}
-          axisTop={null}
-          axisBottom={{
-            tickSize: 5,
-            tickPadding: 5,
-            tickRotation: 90,
-            legend: '',
-            legendPosition: 'middle',
-            legendOffset: 32,
-            format: v => countriesToShow.find(vts => vts === v) ? v : ""
-          }}
-          axisRight={null}
-          axisLeft={{
-            tickSize: 5,
-            tickPadding: 5,
-            tickRotation: 0,
-            legend: 'Days',
-            legendPosition: 'middle',
-            legendOffset: -40
-          }}
-          labelSkipWidth={12}
-          labelSkipHeight={12}
-          labelTextColor={{
-            from: 'color',
-            modifiers: [
-              [
-                'darker',
-                1.6
-              ]
-            ]
-          }}
-          role="application"
-          ariaLabel="Country By Days Bar chart"
-        />
-      </Box>
+      <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
+        <Grid item xs={12} sm={6} lg={4}>
+          <SummaryStats data={countryCountSummaryStats} />
+        </Grid>
+        <Grid item xs={12} sm={6} lg={4}>
+          <SummaryStats data={wordCountSummaryStats} />
+        </Grid>
+        <Grid item xs={12} lg={4}>
+          <SummaryStats data={totalHaversineDistanceSummaryStats} />
+        </Grid>
+        <Grid item xs={12} lg={6}>
+          <Box sx={{
+            height: '500px',
+            width: '100%',
+          }}>
+            <ResponsiveBar
+              data={countryByDays}
+              keys={['days']}
+              indexBy={'country'}
+              margin={{ top: 100, right: 100, bottom: 180, left: 100 }}
+              padding={0.3}
+              valueScale={{ type: 'linear' }}
+              indexScale={{ type: 'band', round: true }}
+              colors={{ scheme: 'nivo' }}
+              borderColor={{
+                from: 'color',
+                modifiers: [
+                  [
+                    'darker',
+                    1.6
+                  ]
+                ]
+              }}
+              axisTop={null}
+              axisBottom={{
+                tickSize: 5,
+                tickPadding: 5,
+                tickRotation: 90,
+                legend: '',
+                legendPosition: 'middle',
+                legendOffset: 32,
+                format: v => countriesToShow.find(vts => vts === v) ? v : ""
+              }}
+              axisRight={null}
+              axisLeft={{
+                tickSize: 5,
+                tickPadding: 5,
+                tickRotation: 0,
+                legend: 'Days',
+                legendPosition: 'middle',
+                legendOffset: -40
+              }}
+              labelSkipWidth={12}
+              labelSkipHeight={12}
+              labelTextColor={{
+                from: 'color',
+                modifiers: [
+                  [
+                    'darker',
+                    1.6
+                  ]
+                ]
+              }}
+              role="application"
+              ariaLabel="Country By Days Bar chart"
+            />
+          </Box>
+        </Grid>
+      </Grid>
     </Box>
   );
 }
