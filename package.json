@@ -72,7 +72,8 @@
     "moduleNameMapper": {
       "^.+\\.(css|sass|scss)$": "identity-obj-proxy",
       "@fontsource/roboto": "identity-obj-proxy",
-      "src/(.*)$": "<rootDir>/src/$1"
+      "src/(.*)$": "<rootDir>/src/$1",
+      "^d3-(.*)$": "<rootDir>/node_modules/d3-$1/dist/d3-$1.min.js"
     }
   },
   "eslintConfig": {
