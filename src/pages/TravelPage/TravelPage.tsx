@@ -2,6 +2,7 @@ import { useSelector } from 'react-redux';
 
 import { Box, Grid} from '@mui/material';
 import NavBar from 'components/NavBar';
+import VisualTitle from 'components/VisualTitle';
 
 import SummaryStats from 'visuals/SummaryStats';
 import { ResponsiveBar } from '@nivo/bar';
@@ -87,11 +88,12 @@ const TravelPage = () => {
             height: '500px',
             width: '100%',
           }}>
+            <VisualTitle text='Days Spent in Each Country' />
             <ResponsiveBar
               data={countryByDays}
               keys={['days']}
               indexBy={'country'}
-              margin={{ top: 100, right: 100, bottom: 180, left: 100 }}
+              margin={{ top: 10, right: 40, bottom: 180, left: 100 }}
               padding={0.3}
               valueScale={{ type: 'linear' }}
               indexScale={{ type: 'band', round: true }}
@@ -145,11 +147,12 @@ const TravelPage = () => {
             height: '500px',
             width: '100%',
           }}>
+            <VisualTitle text='Top 10 Place by Time Spent' />
             <ResponsiveBar
               data={placeByDays}
               keys={['days']}
               indexBy={'place'}
-              margin={{ top: 100, right: 100, bottom: 100, left: 100 }}
+              margin={{ top: 10, right: 40, bottom: 100, left: 100 }}
               padding={0.3}
               valueScale={{ type: 'linear' }}
               indexScale={{ type: 'band', round: true }}
@@ -202,13 +205,14 @@ const TravelPage = () => {
             'height': '500px',
             'width': '100%'
           }}>
+            <VisualTitle text='Travel Journal Daily Word Count' />
             <ResponsiveCalendar
               data={wordCountByDate}
               from={minDate}
               to={maxDate}
               emptyColor="#eeeeee"
               colors={[ '#61cdbb', '#97e3d5', '#e8c1a0', '#f47560' ]}
-              margin={{ top: 40, right: 40, bottom: 40, left: 40 }}
+              margin={{ top: 10, right: 40, bottom: 100, left: 40 }}
               yearSpacing={40}
               monthBorderColor="#ffffff"
               dayBorderWidth={2}
