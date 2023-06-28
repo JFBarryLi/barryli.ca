@@ -5,6 +5,7 @@ import NavBar from 'components/NavBar';
 
 import SummaryStats from 'visuals/SummaryStats';
 import { ResponsiveBar } from '@nivo/bar';
+import { ResponsiveCalendar } from '@nivo/calendar';
 
 import {
   selectCountryCount,
@@ -12,6 +13,9 @@ import {
   selectTotalHaversineDistance,
   selectCountryByDays,
   selectPlaceByDays,
+  selectMaxDate,
+  selectMinDate,
+  selectWordCountByDate,
 } from 'slices/travelLog';
 
 const TravelPage = () => {
@@ -56,6 +60,10 @@ const TravelPage = () => {
   }).sort((a, b) => {
     return b.days - a.days;
   }).slice(0, 10);
+
+  const wordCountByDate = useSelector(selectWordCountByDate);
+  const minDate = useSelector(selectMinDate);
+  const maxDate = useSelector(selectMaxDate);
 
   return (
     <Box sx={{
@@ -186,6 +194,37 @@ const TravelPage = () => {
               }}
               role="application"
               ariaLabel="Top Place By Days Bar chart"
+            />
+          </Box>
+        </Grid>
+        <Grid item xs={12}>
+          <Box sx={{
+            'height': '500px',
+            'width': '100%'
+          }}>
+            <ResponsiveCalendar
+              data={wordCountByDate}
+              from={minDate}
+              to={maxDate}
+              emptyColor="#eeeeee"
+              colors={[ '#61cdbb', '#97e3d5', '#e8c1a0', '#f47560' ]}
+              margin={{ top: 40, right: 40, bottom: 40, left: 40 }}
+              yearSpacing={40}
+              monthBorderColor="#ffffff"
+              dayBorderWidth={2}
+              dayBorderColor="#ffffff"
+              legends={[
+                {
+                  anchor: 'bottom-right',
+                  direction: 'row',
+                  translateY: 36,
+                  itemCount: 4,
+                  itemWidth: 42,
+                  itemHeight: 36,
+                  itemsSpacing: 14,
+                  itemDirection: 'right-to-left'
+                }
+              ]}
             />
           </Box>
         </Grid>

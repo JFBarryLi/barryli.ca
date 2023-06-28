@@ -200,7 +200,7 @@ export const selectCountryByDays = createSelector(
   [selectTravelLog],
   travelLog => {
     if (travelLog.length !== 0) {
-			return travelLog.reduce((acc: any, curr) => {
+      return travelLog.reduce((acc: any, curr) => {
         acc[curr['EndCountry']] = (acc[curr['EndCountry']] ?? 0) + 1;
         return acc;
       }, {});
@@ -224,6 +224,47 @@ export const selectPlaceByDays = createSelector(
   }
 );
 
+export const selectMaxDate = createSelector(
+  [selectTravelLog],
+  travelLog => {
+    if (travelLog.length !== 0) {
+      const maxDate = new Date(Math.max(
+        ...travelLog.map((o: TravelLogItem) => new Date(o.Date).getTime())
+      )).toISOString().split('T')[0];
+      return maxDate;
+    } else {
+      return '2023-12-31';
+    }
+  }
+);
+
+export const selectMinDate = createSelector(
+  [selectTravelLog],
+  travelLog => {
+    if (travelLog.length !== 0) {
+       const minDate = new Date(Math.min(
+        ...travelLog.map((o: TravelLogItem) => new Date(o.Date).getTime())
+       )).toISOString().split('T')[0];
+      return minDate
+    } else {
+      return '2019-09-30';
+    }
+  }
+);
+
+export const selectWordCountByDate = createSelector(
+  [selectTravelLog],
+  travelLog => {
+    if (travelLog.length !== 0) {
+      return travelLog.map(
+        (o: TravelLogItem) => ({'value': o.WordCount, 'day': o.Date})
+      );
+    } else {
+      return [];
+    }
+  }
+);
+
 export default travelLog.reducer;
 
 export type {
@@ -233,4 +274,4 @@ export type {
   TravelLogBasic,
   GlobeData,
   SummaryCardData,
-}
+};
