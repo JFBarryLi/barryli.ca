@@ -48,7 +48,7 @@ const App = function() {
   return (
     <Provider store={store}>
       <DataLayer />
-			<BrowserRouter>
+      <BrowserRouter>
         <ThemeProvider theme={theme}>
           <Router />
         </ThemeProvider>

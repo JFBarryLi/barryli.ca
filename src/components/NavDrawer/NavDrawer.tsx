@@ -77,17 +77,6 @@ const NavDrawer = function ({ drawIsOpen, handleDrawerToggle }: Props) {
           </ListItemIcon>
           <ListItemText primary='Travel' />
         </ListItem>
-        <ListItem
-          button
-          onClick={handleDrawerToggle}
-          component={RouterLink}
-          to='/projects'
-        >
-          <ListItemIcon>
-            <ArchitectureIcon />
-          </ListItemIcon>
-          <ListItemText primary='Projects' />
-        </ListItem>
       </List>
       <Divider />
       <List>
