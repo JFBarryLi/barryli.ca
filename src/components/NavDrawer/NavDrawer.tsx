@@ -12,7 +12,6 @@ import ListItemText from '@mui/material/ListItemText';
 import HomeIcon from '@mui/icons-material/Home';
 import InfoIcon from '@mui/icons-material/Info';
 import PublicIcon from '@mui/icons-material/Public';
-import ArchitectureIcon from '@mui/icons-material/Architecture';
 import ContactPageIcon from '@mui/icons-material/ContactPage';
 
 import { Link as RouterLink } from 'react-router-dom';
