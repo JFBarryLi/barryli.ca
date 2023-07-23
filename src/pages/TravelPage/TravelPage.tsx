@@ -5,6 +5,7 @@ import NavBar from 'components/NavBar';
 import VisualTitle from 'components/VisualTitle';
 
 import SummaryStats from 'visuals/SummaryStats';
+import TravelGraph from 'visuals/TravelGraph';
 import { ResponsiveBar } from '@nivo/bar';
 import { ResponsiveCalendar } from '@nivo/calendar';
 
@@ -65,6 +66,9 @@ const TravelPage = () => {
   const wordCountByDate = useSelector(selectWordCountByDate);
   const minDate = useSelector(selectMinDate);
   const maxDate = useSelector(selectMaxDate);
+
+  const travelGraphNodes = [{'id': '1', 'label': 'node 1'}, {'id': '2', 'label': 'node2'}];
+  const travelGraphEdges = [{'source': '1', 'target': '2', 'id': '1-2', 'label': '1-2'}];
 
   return (
     <Box sx={{
@@ -199,6 +203,8 @@ const TravelPage = () => {
               ariaLabel="Top Place By Days Bar chart"
             />
           </Box>
+        </Grid>
+        <Grid item xs={12}>
         </Grid>
         <Grid item xs={12}>
           <Box sx={{
