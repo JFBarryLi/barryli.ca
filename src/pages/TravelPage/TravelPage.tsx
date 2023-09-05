@@ -71,7 +71,7 @@ const TravelPage = () => {
   const travelGraphEdges = [{'source': '1', 'target': '2', 'id': '1-2', 'label': '1-2'}];
 
   return (
-    <Box sx={{
+    <Box component='div' sx={{
       display: 'block',
       width: '100%',
       height: '100%',
@@ -88,7 +88,7 @@ const TravelPage = () => {
           <SummaryStats data={totalHaversineDistanceSummaryStats} />
         </Grid>
         <Grid item xs={12} lg={6}>
-          <Box sx={{
+          <Box component='div' sx={{
             height: '500px',
             width: '100%',
           }}>
@@ -147,7 +147,7 @@ const TravelPage = () => {
           </Box>
         </Grid>
         <Grid item xs={12} lg={6}>
-          <Box sx={{
+          <Box component='div' sx={{
             height: '500px',
             width: '100%',
           }}>
@@ -205,10 +205,10 @@ const TravelPage = () => {
           </Box>
         </Grid>
         <Grid item xs={12}>
-          <Box sx={{
+          <Box component='div' sx={{
           }}>
             <VisualTitle text='Travel Graph - Connections' />
-            <Box sx={{
+            <Box component='div' sx={{
               'height': '500px',
               'width': '80%',
               'position': 'relative',
@@ -219,7 +219,7 @@ const TravelPage = () => {
           </Box>
         </Grid>
         <Grid item xs={12}>
-          <Box sx={{
+          <Box component='div' sx={{
             'height': '500px',
             'width': '100%'
           }}>

@@ -45,7 +45,7 @@ const HomePage = () => {
 
   return (
     <div>
-      <Box sx={{
+      <Box component='div' sx={{
         display: 'block',
         width: '100%',
         height: '100%',

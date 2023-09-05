@@ -11,7 +11,7 @@ interface Props {
 
 const TravelGlobe = ({ data }: Props) => {
   return (
-    <Box sx={{
+    <Box component='div' sx={{
       margin: 4,
       display: 'flex',
       alignItems: 'center',
