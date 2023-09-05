@@ -25,13 +25,13 @@ const AboutPage = () => {
   const countryCount = useSelector(selectCountryCount);
 
   return (
-    <Box sx={{
+    <Box component='div' sx={{
       display: 'block',
       width: '100%',
       height: '100%',
     }}>
       <NavBar />
-      <Box sx={{
+      <Box component='div' sx={{
         padding: '2em',
       }}>
         <Typography variant='body1' component='div' sx={{
