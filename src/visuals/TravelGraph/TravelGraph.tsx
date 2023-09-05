@@ -1,8 +1,20 @@
-import { GraphCanvas, GraphNode, GraphEdge } from 'reagraph';
+import { GraphCanvas } from 'reagraph';
+
+interface Node {
+  id: string;
+  label: string;
+}
+
+interface Edge {
+  id: string;
+  label: string;
+  source: string;
+  target: string;
+}
 
 interface Props {
-  nodes: GraphNode;
-  edges: GraphEdge;
+  nodes: Node[];
+  edges: Edge[];
 }
 
 const TravelGraph = ({ nodes, edges }: Props) => {

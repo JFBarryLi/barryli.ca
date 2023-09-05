@@ -205,6 +205,18 @@ const TravelPage = () => {
           </Box>
         </Grid>
         <Grid item xs={12}>
+          <Box sx={{
+          }}>
+            <VisualTitle text='Travel Graph - Connections' />
+            <Box sx={{
+              'height': '500px',
+              'width': '80%',
+              'position': 'relative',
+              'border': 'solid 1px',
+            }}>
+              <TravelGraph nodes={travelGraphNodes} edges={travelGraphEdges} />
+            </Box>
+          </Box>
         </Grid>
         <Grid item xs={12}>
           <Box sx={{
