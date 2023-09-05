@@ -31,7 +31,7 @@ const iOS =
 const NavDrawer = function ({ drawIsOpen, handleDrawerToggle }: Props) {
   const drawer = (
     <div>
-      <Box sx={(theme) => ({
+      <Box component='div' sx={(theme) => ({
         ...theme.mixins.toolbar,
         padding: theme.spacing(0, 1),
         display: 'flex',

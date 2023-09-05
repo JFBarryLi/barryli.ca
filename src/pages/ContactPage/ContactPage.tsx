@@ -6,7 +6,7 @@ import NavBar from 'components/NavBar';
 import PageHeader from 'components/PageHeader';
 
 const ContactPage = () => (
-  <Box sx={{
+  <Box component='div' sx={{
     display: 'block',
     width: '100%',
     height: '100%',

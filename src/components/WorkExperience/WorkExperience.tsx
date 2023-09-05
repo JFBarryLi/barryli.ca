@@ -13,7 +13,7 @@ type Props = {
 }
 
 const WorkExperience = ({experience}: Props) => (
-  <Box sx={{
+  <Box component='div' sx={{
     margin: '1em',
     padding: '1em',
     display: 'flex',

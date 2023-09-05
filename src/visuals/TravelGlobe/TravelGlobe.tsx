@@ -11,7 +11,7 @@ interface Props {
 
 const TravelGlobe = ({ data }: Props) => {
   return (
-    <Box sx={{
+    <Box component='div' sx={{
       margin: 4,
       display: 'flex',
       alignItems: 'center',
@@ -24,7 +24,7 @@ const TravelGlobe = ({ data }: Props) => {
         globeImageUrl={earth}
 
         pointsData={data.travelLocations}
-        pointLabel={(d: any) => `<div><div style='font-weight: 400; font-family: "Roboto","Helvetica","Arial",sans-serif; border-radius: 10px; padding: 0.5em; background-color: orange; color: #00000099'>${d.name} - Total # of days spent here: ${d.days}</div></div>`}
+        pointLabel={(d: any) => `<div><div style='font-weight: 400; font-family: "Roboto","Helvetica","Arial",sans-serif; border-radius: 10px; padding: 0.5em; background-color: orange; color: #00000099'>${d.name}<br />Total # of days spent here: ${d.days}<br /># of visits: ${d.numVisits}</div></div>`}
         pointLat={(d: any) => d.lat}
         pointLng={(d: any) => d.lng}
         pointRadius={() => 0.3}

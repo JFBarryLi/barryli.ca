@@ -1,14 +1,16 @@
 import { useSelector } from 'react-redux';
 
-import { Box, Grid} from '@mui/material';
+import { Box, Grid, Card } from '@mui/material';
 import NavBar from 'components/NavBar';
 import VisualTitle from 'components/VisualTitle';
 
 import SummaryStats from 'visuals/SummaryStats';
+import TravelGraph from 'visuals/TravelGraph';
 import { ResponsiveBar } from '@nivo/bar';
 import { ResponsiveCalendar } from '@nivo/calendar';
 
 import {
+  selectTravelLocations,
   selectCountryCount,
   selectWordCount,
   selectTotalHaversineDistance,
@@ -17,6 +19,8 @@ import {
   selectMaxDate,
   selectMinDate,
   selectWordCountByDate,
+  selectLocationGraphNodes,
+  selectLocationGraphLinks,
 } from 'slices/travelLog';
 
 const TravelPage = () => {
@@ -62,12 +66,20 @@ const TravelPage = () => {
     return b.days - a.days;
   }).slice(0, 10);
 
+  const places = useSelector(selectTravelLocations);
+  const placeByVisits = places.sort((a, b) => {
+    return b.numVisits - a.numVisits;
+  }).slice(0, 10);
+
   const wordCountByDate = useSelector(selectWordCountByDate);
   const minDate = useSelector(selectMinDate);
   const maxDate = useSelector(selectMaxDate);
 
+  const travelGraphNodes = useSelector(selectLocationGraphNodes);
+  const travelGraphEdges = useSelector(selectLocationGraphLinks);
+
   return (
-    <Box sx={{
+    <Box component='div' sx={{
       display: 'block',
       width: '100%',
       height: '100%',
@@ -84,7 +96,7 @@ const TravelPage = () => {
           <SummaryStats data={totalHaversineDistanceSummaryStats} />
         </Grid>
         <Grid item xs={12} lg={6}>
-          <Box sx={{
+          <Box component='div' sx={{
             height: '500px',
             width: '100%',
           }}>
@@ -143,7 +155,7 @@ const TravelPage = () => {
           </Box>
         </Grid>
         <Grid item xs={12} lg={6}>
-          <Box sx={{
+          <Box component='div' sx={{
             height: '500px',
             width: '100%',
           }}>
@@ -200,8 +212,80 @@ const TravelPage = () => {
             />
           </Box>
         </Grid>
+        <Grid item xs={12} lg={12}>
+          <Box component='div' sx={{
+            height: '500px',
+            width: '100%',
+          }}>
+            <VisualTitle text='Top 10 Place by # of Visits' />
+            <ResponsiveBar
+              data={placeByVisits}
+              keys={['numVisits']}
+              indexBy={'name'}
+              margin={{ top: 10, right: 40, bottom: 100, left: 100 }}
+              padding={0.3}
+              valueScale={{ type: 'linear' }}
+              indexScale={{ type: 'band', round: true }}
+              colors={{ scheme: 'nivo' }}
+              borderColor={{
+                from: 'color',
+                modifiers: [
+                  [
+                    'darker',
+                    1.6
+                  ]
+                ]
+              }}
+              axisTop={null}
+              axisBottom={{
+                tickSize: 5,
+                tickPadding: 5,
+                tickRotation: 90,
+                legend: '',
+                legendPosition: 'middle',
+                legendOffset: 32
+              }}
+              axisRight={null}
+              axisLeft={{
+                tickSize: 5,
+                tickPadding: 5,
+                tickRotation: 0,
+                legend: '# of Visits',
+                legendPosition: 'middle',
+                legendOffset: -40
+              }}
+              labelSkipWidth={12}
+              labelSkipHeight={12}
+              labelTextColor={{
+                from: 'color',
+                modifiers: [
+                  [
+                    'darker',
+                    1.6
+                  ]
+                ]
+              }}
+              role="application"
+              ariaLabel="Top Place By Visits Bar chart"
+            />
+          </Box>
+        </Grid>
         <Grid item xs={12}>
-          <Box sx={{
+          <Box component='div' sx={{
+          }}>
+            <VisualTitle text='Travel Graph - Connections' />
+            <Card component='div' sx={{
+              'height': '500px',
+              'width': '80%',
+              'position': 'relative',
+              'margin': '40px'
+            }}>
+              <TravelGraph nodes={travelGraphNodes} edges={travelGraphEdges} />
+            </Card>
+          </Box>
+        </Grid>
+        <Grid item xs={12}>
+          <Box component='div' sx={{
             'height': '500px',
             'width': '100%'
           }}>

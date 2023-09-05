@@ -42,7 +42,6 @@ interface TravelLogData extends Array<TravelLogItem>{}
 interface TravelLogBasic extends Array<TravelLogItemBasic>{}
 
 interface Location {
-  trip: string;
   name: string;
   lat: number;
   lng: number;
@@ -50,6 +49,7 @@ interface Location {
 
 interface LocationStat extends Location {
   days: number;
+  numVisits: number;
 }
 
 interface TravelLocations extends Array<LocationStat>{}
@@ -69,6 +69,43 @@ interface SummaryCardData {
   currentDay: number;
   countryCount: number | undefined;
 }
+
+interface LocationGraphNodeData {
+  numVisits: number;
+  days: number;
+}
+
+interface LocationGraphNode {
+  id: string;
+  label: string;
+  size: number;
+  labelVisible?: boolean;
+  data: LocationGraphNodeData;
+}
+
+interface LocationGraphNodes extends Array<LocationGraphNode> {}
+
+interface LocationGraphLinkDataVisit {
+  day: number;
+  date: string;
+  StartLoc: string;
+  EndLoc: string;
+}
+
+interface LocationGraphLinkData {
+  visits: Array<LocationGraphLinkDataVisit>
+}
+
+interface LocationGraphLink {
+  id: string;
+  label: string;
+  size: number;
+  source: string;
+  target: string;
+  data: LocationGraphLinkData;
+}
+
+interface LocationGraphLinks extends Array<LocationGraphLink> {}
 
 interface TravelLog {
   travelLogData: TravelLogData;
@@ -117,18 +154,22 @@ export const selectTravelLocations = createSelector(
   [selectTravelPaths, selectTravelLogBasic],
   (travelPaths, travelLogBasic) => travelPaths
     .map((item: TravelLogItemBasic) => ({
-      trip: item.TripName, name: item.EndLoc, lat: item.EndLat, lng: item.EndLng}))
+      name: item.EndLoc, lat: item.EndLat, lng: item.EndLng}))
     .filter(
       (ele: Location, index: number, array: Array<Location>) => array.findIndex(
-        (obj: Location) => (obj.name === ele.name && obj.trip === ele.trip)
+        (obj: Location) => (obj.name === ele.name)
       ) === index
     )
     .map((loc: Location, index: number) => ({
-      trip: loc.trip,
       name: loc.name,
       lat: loc.lat,
       lng: loc.lng,
-      days: travelLogBasic.filter((item: TravelLogItemBasic) => item.EndLoc === loc.name).length
+      days: travelLogBasic.filter(
+        (item: TravelLogItemBasic) => item.EndLoc === loc.name
+      ).length,
+      numVisits: travelLogBasic.filter(
+        (item: TravelLogItemBasic) => item.EndLoc === loc.name && item.StartLoc !== loc.name
+      ).length
     }))
 );
 
@@ -265,6 +306,70 @@ export const selectWordCountByDate = createSelector(
   }
 );
 
+export const selectLocationGraphNodes = createSelector(
+  [selectTravelLocations],
+  travelLocations => {
+    if (travelLocations.length !== 0) {
+      return travelLocations.map(
+        (o: LocationStat) => ({
+          'id': o.name,
+          label: o.name,
+          size: o.numVisits,
+          labelVisible: true,
+          data: {numVisits: o.numVisits, days: o.days}
+        })
+      );
+    } else {
+      return [];
+    }
+  }
+);
+
+export const selectLocationGraphLinks = createSelector(
+  [selectTravelLogBasic],
+  travelLogBasic => {
+    if (travelLogBasic.length !== 0) {
+      return travelLogBasic.filter(
+        (item: TravelLogItemBasic) => item.StartLoc !== item.EndLoc
+      ).filter(
+        (
+          item: TravelLogItemBasic,
+          index: number,
+          array: Array<TravelLogItemBasic>
+        ) => array.findIndex(
+          (obj: TravelLogItemBasic) => (
+            obj.StartLoc === item.StartLoc && obj.EndLoc === item.EndLoc
+          )
+        ) === index
+      ).map(
+        (item: TravelLogItemBasic) => {
+          const visits = travelLogBasic.filter(
+            (o: TravelLogItemBasic) => o.StartLoc === item.StartLoc && o.EndLoc === item.EndLoc 
+          ).map(
+            (obj: TravelLogItemBasic) => ({
+              day: obj.Day,
+              date: obj.Date,
+              StartLoc: obj.StartLoc,
+              EndLoc: obj.EndLoc
+            })
+          );
+
+          return {
+            id: item.StartLoc + '-->' + item.EndLoc,
+            label: item.StartLoc + '-->' + item.EndLoc,
+            size: visits.length * 3,
+            source: item.StartLoc,
+            target: item.EndLoc,
+            data: {visits: visits}
+          }
+        }
+      );
+    } else {
+      return [];
+    }
+  }
+);
+
 export default travelLog.reducer;
 
 export type {
@@ -274,4 +379,6 @@ export type {
   TravelLogBasic,
   GlobeData,
   SummaryCardData,
+  LocationGraphNodes,
+  LocationGraphLinks,
 };
