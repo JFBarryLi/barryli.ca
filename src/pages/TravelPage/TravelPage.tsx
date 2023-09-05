@@ -10,6 +10,7 @@ import { ResponsiveBar } from '@nivo/bar';
 import { ResponsiveCalendar } from '@nivo/calendar';
 
 import {
+  selectTravelLocations,
   selectCountryCount,
   selectWordCount,
   selectTotalHaversineDistance,
@@ -63,6 +64,11 @@ const TravelPage = () => {
     }
   }).sort((a, b) => {
     return b.days - a.days;
+  }).slice(0, 10);
+
+  const places = useSelector(selectTravelLocations);
+  const placeByVisits = places.sort((a, b) => {
+    return b.numVisits - a.numVisits;
   }).slice(0, 10);
 
   const wordCountByDate = useSelector(selectWordCountByDate);
@@ -203,6 +209,64 @@ const TravelPage = () => {
               }}
               role="application"
               ariaLabel="Top Place By Days Bar chart"
+            />
+          </Box>
+        </Grid>
+        <Grid item xs={12} lg={12}>
+          <Box component='div' sx={{
+            height: '500px',
+            width: '100%',
+          }}>
+            <VisualTitle text='Top 10 Place by # of Visits' />
+            <ResponsiveBar
+              data={placeByVisits}
+              keys={['numVisits']}
+              indexBy={'name'}
+              margin={{ top: 10, right: 40, bottom: 100, left: 100 }}
+              padding={0.3}
+              valueScale={{ type: 'linear' }}
+              indexScale={{ type: 'band', round: true }}
+              colors={{ scheme: 'nivo' }}
+              borderColor={{
+                from: 'color',
+                modifiers: [
+                  [
+                    'darker',
+                    1.6
+                  ]
+                ]
+              }}
+              axisTop={null}
+              axisBottom={{
+                tickSize: 5,
+                tickPadding: 5,
+                tickRotation: 90,
+                legend: '',
+                legendPosition: 'middle',
+                legendOffset: 32
+              }}
+              axisRight={null}
+              axisLeft={{
+                tickSize: 5,
+                tickPadding: 5,
+                tickRotation: 0,
+                legend: '# of Visits',
+                legendPosition: 'middle',
+                legendOffset: -40
+              }}
+              labelSkipWidth={12}
+              labelSkipHeight={12}
+              labelTextColor={{
+                from: 'color',
+                modifiers: [
+                  [
+                    'darker',
+                    1.6
+                  ]
+                ]
+              }}
+              role="application"
+              ariaLabel="Top Place By Visits Bar chart"
             />
           </Box>
         </Grid>
