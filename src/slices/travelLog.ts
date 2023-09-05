@@ -42,7 +42,6 @@ interface TravelLogData extends Array<TravelLogItem>{}
 interface TravelLogBasic extends Array<TravelLogItemBasic>{}
 
 interface Location {
-  trip: string;
   name: string;
   lat: number;
   lng: number;
@@ -50,6 +49,7 @@ interface Location {
 
 interface LocationStat extends Location {
   days: number;
+  numVisits: number;
 }
 
 interface TravelLocations extends Array<LocationStat>{}
@@ -117,18 +117,22 @@ export const selectTravelLocations = createSelector(
   [selectTravelPaths, selectTravelLogBasic],
   (travelPaths, travelLogBasic) => travelPaths
     .map((item: TravelLogItemBasic) => ({
-      trip: item.TripName, name: item.EndLoc, lat: item.EndLat, lng: item.EndLng}))
+      name: item.EndLoc, lat: item.EndLat, lng: item.EndLng}))
     .filter(
       (ele: Location, index: number, array: Array<Location>) => array.findIndex(
-        (obj: Location) => (obj.name === ele.name && obj.trip === ele.trip)
+        (obj: Location) => (obj.name === ele.name)
       ) === index
     )
     .map((loc: Location, index: number) => ({
-      trip: loc.trip,
       name: loc.name,
       lat: loc.lat,
       lng: loc.lng,
-      days: travelLogBasic.filter((item: TravelLogItemBasic) => item.EndLoc === loc.name).length
+      days: travelLogBasic.filter(
+        (item: TravelLogItemBasic) => item.EndLoc === loc.name
+      ).length,
+      numVisits: travelLogBasic.filter(
+        (item: TravelLogItemBasic) => item.EndLoc === loc.name && item.StartLoc !== loc.name
+      ).length
     }))
 );
 
