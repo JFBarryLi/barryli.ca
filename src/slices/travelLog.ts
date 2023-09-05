@@ -105,6 +105,8 @@ interface LocationGraphLink {
   data: LocationGraphLinkData;
 }
 
+interface LocationGraphLinks extends Array<LocationGraphLink> {}
+
 interface TravelLog {
   travelLogData: TravelLogData;
 }
@@ -355,7 +357,7 @@ export const selectLocationGraphLinks = createSelector(
           return {
             id: item.StartLoc + '-->' + item.EndLoc,
             label: item.StartLoc + '-->' + item.EndLoc,
-            size: visits.length,
+            size: visits.length * 3,
             source: item.StartLoc,
             target: item.EndLoc,
             data: {visits: visits}
@@ -377,4 +379,6 @@ export type {
   TravelLogBasic,
   GlobeData,
   SummaryCardData,
+  LocationGraphNodes,
+  LocationGraphLinks,
 };

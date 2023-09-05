@@ -1,27 +1,43 @@
-import { GraphCanvas } from 'reagraph';
+import { useRef } from 'react';
 
-interface Node {
-  id: string;
-  label: string;
-}
+import { GraphCanvas, GraphCanvasRef, useSelection } from 'reagraph';
 
-interface Edge {
-  id: string;
-  label: string;
-  source: string;
-  target: string;
-}
+import { LocationGraphNodes, LocationGraphLinks } from 'slices/travelLog';
 
 interface Props {
-  nodes: Node[];
-  edges: Edge[];
+  nodes: LocationGraphNodes;
+  edges: LocationGraphLinks;
 }
 
 const TravelGraph = ({ nodes, edges }: Props) => {
+	const graphRef = useRef<GraphCanvasRef | null>(null);
+  const { selections, actives, onNodeClick, onCanvasClick } = useSelection({
+    ref: graphRef,
+    nodes: nodes,
+    edges: edges,
+    pathSelectionType: 'all',
+    focusOnSelect: false
+	});
+
   return (
     <GraphCanvas
       nodes={nodes}
       edges={edges}
+
+      layoutType='forceDirected2d'
+
+      edgeInterpolation='curved'
+
+      sizingType='attribute'
+      sizingAttribute='days'
+      minNodeSize={7}
+      maxNodeSize={120}
+
+			ref={graphRef}
+			selections={selections}
+			actives={actives}
+			onCanvasClick={onCanvasClick}
+			onNodeClick={onNodeClick}
     />
   );
 }

@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux';
 
-import { Box, Grid} from '@mui/material';
+import { Box, Grid, Card } from '@mui/material';
 import NavBar from 'components/NavBar';
 import VisualTitle from 'components/VisualTitle';
 
@@ -210,15 +210,14 @@ const TravelPage = () => {
           <Box component='div' sx={{
           }}>
             <VisualTitle text='Travel Graph - Connections' />
-            <Box component='div' sx={{
+            <Card component='div' sx={{
               'height': '500px',
               'width': '80%',
               'position': 'relative',
-              'border': 'solid 1px',
               'margin': '40px'
             }}>
               <TravelGraph nodes={travelGraphNodes} edges={travelGraphEdges} />
-            </Box>
+            </Card>
           </Box>
         </Grid>
         <Grid item xs={12}>
