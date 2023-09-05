@@ -4,7 +4,7 @@ import Typography from '@mui/material/Typography';
 import NavBar from 'components/NavBar';
 
 const NotFoundPage = () => (
-  <Box sx={{
+  <Box component='div' sx={{
     width: '100%',
     height: '100%',
   }}>
