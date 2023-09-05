@@ -70,6 +70,41 @@ interface SummaryCardData {
   countryCount: number | undefined;
 }
 
+interface LocationGraphNodeData {
+  numVisits: number;
+  days: number;
+}
+
+interface LocationGraphNode {
+  id: string;
+  label: string;
+  size: number;
+  labelVisible?: boolean;
+  data: LocationGraphNodeData;
+}
+
+interface LocationGraphNodes extends Array<LocationGraphNode> {}
+
+interface LocationGraphLinkDataVisit {
+  day: number;
+  date: string;
+  StartLoc: string;
+  EndLoc: string;
+}
+
+interface LocationGraphLinkData {
+  visits: Array<LocationGraphLinkDataVisit>
+}
+
+interface LocationGraphLink {
+  id: string;
+  label: string;
+  size: number;
+  source: string;
+  target: string;
+  data: LocationGraphLinkData;
+}
+
 interface TravelLog {
   travelLogData: TravelLogData;
 }
@@ -262,6 +297,70 @@ export const selectWordCountByDate = createSelector(
     if (travelLog.length !== 0) {
       return travelLog.map(
         (o: TravelLogItem) => ({'value': o.WordCount, 'day': o.Date})
+      );
+    } else {
+      return [];
+    }
+  }
+);
+
+export const selectLocationGraphNodes = createSelector(
+  [selectTravelLocations],
+  travelLocations => {
+    if (travelLocations.length !== 0) {
+      return travelLocations.map(
+        (o: LocationStat) => ({
+          'id': o.name,
+          label: o.name,
+          size: o.numVisits,
+          labelVisible: true,
+          data: {numVisits: o.numVisits, days: o.days}
+        })
+      );
+    } else {
+      return [];
+    }
+  }
+);
+
+export const selectLocationGraphLinks = createSelector(
+  [selectTravelLogBasic],
+  travelLogBasic => {
+    if (travelLogBasic.length !== 0) {
+      return travelLogBasic.filter(
+        (item: TravelLogItemBasic) => item.StartLoc !== item.EndLoc
+      ).filter(
+        (
+          item: TravelLogItemBasic,
+          index: number,
+          array: Array<TravelLogItemBasic>
+        ) => array.findIndex(
+          (obj: TravelLogItemBasic) => (
+            obj.StartLoc === item.StartLoc && obj.EndLoc === item.EndLoc
+          )
+        ) === index
+      ).map(
+        (item: TravelLogItemBasic) => {
+          const visits = travelLogBasic.filter(
+            (o: TravelLogItemBasic) => o.StartLoc === item.StartLoc && o.EndLoc === item.EndLoc 
+          ).map(
+            (obj: TravelLogItemBasic) => ({
+              day: obj.Day,
+              date: obj.Date,
+              StartLoc: obj.StartLoc,
+              EndLoc: obj.EndLoc
+            })
+          );
+
+          return {
+            id: item.StartLoc + '-->' + item.EndLoc,
+            label: item.StartLoc + '-->' + item.EndLoc,
+            size: visits.length,
+            source: item.StartLoc,
+            target: item.EndLoc,
+            data: {visits: visits}
+          }
+        }
       );
     } else {
       return [];

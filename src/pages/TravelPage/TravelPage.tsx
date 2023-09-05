@@ -18,6 +18,8 @@ import {
   selectMaxDate,
   selectMinDate,
   selectWordCountByDate,
+  selectLocationGraphNodes,
+  selectLocationGraphLinks,
 } from 'slices/travelLog';
 
 const TravelPage = () => {
@@ -67,8 +69,8 @@ const TravelPage = () => {
   const minDate = useSelector(selectMinDate);
   const maxDate = useSelector(selectMaxDate);
 
-  const travelGraphNodes = [{'id': '1', 'label': 'node 1'}, {'id': '2', 'label': 'node2'}];
-  const travelGraphEdges = [{'source': '1', 'target': '2', 'id': '1-2', 'label': '1-2'}];
+  const travelGraphNodes = useSelector(selectLocationGraphNodes);
+  const travelGraphEdges = useSelector(selectLocationGraphLinks);
 
   return (
     <Box component='div' sx={{
@@ -213,6 +215,7 @@ const TravelPage = () => {
               'width': '80%',
               'position': 'relative',
               'border': 'solid 1px',
+              'margin': '40px'
             }}>
               <TravelGraph nodes={travelGraphNodes} edges={travelGraphEdges} />
             </Box>
