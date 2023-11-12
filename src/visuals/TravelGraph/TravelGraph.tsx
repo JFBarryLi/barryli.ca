@@ -24,7 +24,7 @@ const TravelGraph = ({ nodes, edges }: Props) => {
       nodes={nodes}
       edges={edges}
 
-      layoutType='forceDirected2d'
+      layoutType='forceDirected3d'
 
       edgeInterpolation='curved'
 
