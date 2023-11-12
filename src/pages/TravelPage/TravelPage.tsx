@@ -109,7 +109,7 @@ const TravelPage = () => {
               padding={0.3}
               valueScale={{ type: 'linear' }}
               indexScale={{ type: 'band', round: true }}
-              colors={{ scheme: 'nivo' }}
+              colors={{ scheme: 'purpleRed_green' }}
               borderColor={{
                 from: 'color',
                 modifiers: [
@@ -144,7 +144,7 @@ const TravelPage = () => {
                 from: 'color',
                 modifiers: [
                   [
-                    'darker',
+                    'brighter',
                     1.6
                   ]
                 ]
@@ -168,7 +168,7 @@ const TravelPage = () => {
               padding={0.3}
               valueScale={{ type: 'linear' }}
               indexScale={{ type: 'band', round: true }}
-              colors={{ scheme: 'nivo' }}
+              colors={{ scheme: 'pink_yellowGreen' }}
               borderColor={{
                 from: 'color',
                 modifiers: [
@@ -202,7 +202,7 @@ const TravelPage = () => {
                 from: 'color',
                 modifiers: [
                   [
-                    'darker',
+                    'brighter',
                     1.6
                   ]
                 ]
@@ -226,7 +226,7 @@ const TravelPage = () => {
               padding={0.3}
               valueScale={{ type: 'linear' }}
               indexScale={{ type: 'band', round: true }}
-              colors={{ scheme: 'nivo' }}
+              colors={{ scheme: 'brown_blueGreen' }}
               borderColor={{
                 from: 'color',
                 modifiers: [
@@ -260,7 +260,7 @@ const TravelPage = () => {
                 from: 'color',
                 modifiers: [
                   [
-                    'darker',
+                    'brighter',
                     1.6
                   ]
                 ]
@@ -276,7 +276,6 @@ const TravelPage = () => {
             <VisualTitle text='Travel Graph - Connections' />
             <Card component='div' sx={{
               'height': '500px',
-              'width': '80%',
               'position': 'relative',
               'margin': '40px'
             }}>
