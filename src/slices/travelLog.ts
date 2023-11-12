@@ -179,6 +179,18 @@ export const selectMaxDays = createSelector([selectTravelLocations], travelLocat
   )
 );
 
+export const selectLatestDay = createSelector(
+  [selectTravelLog],
+  travelLog => {
+    if (travelLog.length !== 0) {
+      const latestEntryDay = Math.max(...travelLog.map((o: TravelLogItem) => o.Day));
+      return latestEntryDay;
+    } else {
+      return undefined;
+    }
+  }
+);
+
 export const selectCurrentLocation = createSelector(
   [selectTravelLog],
   travelLog => {

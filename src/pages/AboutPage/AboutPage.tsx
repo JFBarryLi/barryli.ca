@@ -10,18 +10,14 @@ import WorkExperience from 'components/WorkExperience';
 import { useGetTravelLogByTripNameQuery } from 'apis/travelLog';
 
 import {
-  selectCurrentLocation,
   selectCountryCount,
+  selectLatestDay,
 } from 'slices/travelLog';
 
 const AboutPage = () => {
   const { isLoading } = useGetTravelLogByTripNameQuery('World Tour 2021-2023');
 
-  const firstDay = new Date('09/30/2021');
-  const today = new Date();
-  // The + here is to coerce the date to a number for Typescript.
-  const currentDay = Math.round((+today - +firstDay) / (1000*60*60*24));
-  const currentLocation = useSelector(selectCurrentLocation);
+  const latestDay = useSelector(selectLatestDay);
   const countryCount = useSelector(selectCountryCount);
 
   return (
@@ -38,37 +34,25 @@ const AboutPage = () => {
           margin: '0.5em',
           display: 'block',
         }}>
-          Hello, I am Barry.
+          Hello, I'm Barry.
         </Typography>
         <Typography variant='body1' component='div' sx={{
           margin: '0.5em',
           display: 'block',
         }}>
-          I am an experienced data engineer currently taking a break to travel the world.
+          I have spent {
+            isLoading ? <CircularProgress size='1em' /> : latestDay
+          } days travelling the world in 2021-2023.
         </Typography>
         <Typography variant='body1' component='div' sx={{
           margin: '0.5em',
           display: 'block',
         }}>
-          Today I am on day {
-            isLoading ? <CircularProgress size='1em' /> : currentDay
-          } of my world tour.
-        </Typography>
-        <Typography variant='body1' component='div' sx={{
-          margin: '0.5em',
-          display: 'block',
-        }}>
-          I have travelled to {
+          Over these {
+            isLoading ? <CircularProgress size='1em' /> : latestDay
+          } days I have travelled to {
             isLoading ? <CircularProgress size='1em' /> : countryCount
-          } countries over the past {
-            isLoading ? <CircularProgress size='1em' /> : currentDay} days.
-        </Typography>
-        <Typography variant='body1' component='div' sx={{
-          margin: '0.5em',
-          display: 'block',
-        }}>
-          Currently I am in {
-            isLoading ? <CircularProgress size='1em' /> : currentLocation}.
+          } different countries.
         </Typography>
       </Box>
 

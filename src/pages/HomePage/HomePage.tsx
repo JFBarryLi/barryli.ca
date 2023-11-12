@@ -4,8 +4,6 @@ import Box from '@mui/material/Box';
 import NavBar from 'components/NavBar';
 import TravelGlobe from 'visuals/TravelGlobe';
 
-import { useGetTravelLogByTripNameQuery } from 'apis/travelLog';
-
 import {
   selectTravelPaths,
   selectTravelLocations,
