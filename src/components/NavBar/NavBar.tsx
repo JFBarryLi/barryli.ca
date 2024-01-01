@@ -7,6 +7,8 @@ import Button from '@mui/material/Button';
 import MenuIcon from '@mui/icons-material/Menu';
 import GitHubIcon from '@mui/icons-material/GitHub';
 
+import logo from 'assets/logos/logo.svg'; 
+
 import { Link as RouterLink } from 'react-router-dom';
 
 import NavDrawer from 'components/NavDrawer';
@@ -33,6 +35,13 @@ const NavBar = function() {
             <MenuIcon />
           </IconButton>
           <NavDrawer drawIsOpen={drawIsOpen} handleDrawerToggle={handleDrawerToggle} />
+          <IconButton
+            component={RouterLink}
+            to='/'
+            size='large'
+          >
+            <img alt="BL" src={logo} width="32" height="32"/>
+          </IconButton>
           <Button
             variant='text'
             component={RouterLink}
