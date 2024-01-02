@@ -1,4 +1,5 @@
 import { useSelector } from 'react-redux';
+import { useTheme } from '@mui/material/styles';
 
 import { Box, Grid, Card } from '@mui/material';
 import NavBar from 'components/NavBar';
@@ -42,7 +43,7 @@ const TravelPage = () => {
   const totalHaversineDistanceSummaryStats = {
     title: '',
     stats: totalHaversineDistance,
-    description: 'KM Traveled As The Crow Flies'
+    description: 'KM Traveled'
   }
 
   const countryByDaysObj = useSelector(selectCountryByDays);
@@ -78,6 +79,8 @@ const TravelPage = () => {
   const travelGraphNodes = useSelector(selectLocationGraphNodes);
   const travelGraphEdges = useSelector(selectLocationGraphLinks);
 
+  const theme = useTheme();
+
   return (
     <Box component='div' sx={{
       display: 'block',
@@ -109,7 +112,7 @@ const TravelPage = () => {
               padding={0.3}
               valueScale={{ type: 'linear' }}
               indexScale={{ type: 'band', round: true }}
-              colors={{ scheme: 'purpleRed_green' }}
+              colors={[theme.palette.secondary.light]}
               borderColor={{
                 from: 'color',
                 modifiers: [
@@ -168,7 +171,7 @@ const TravelPage = () => {
               padding={0.3}
               valueScale={{ type: 'linear' }}
               indexScale={{ type: 'band', round: true }}
-              colors={{ scheme: 'pink_yellowGreen' }}
+              colors={[theme.palette.primary.light]}
               borderColor={{
                 from: 'color',
                 modifiers: [
@@ -203,7 +206,7 @@ const TravelPage = () => {
                 modifiers: [
                   [
                     'brighter',
-                    1.6
+                    2
                   ]
                 ]
               }}
@@ -226,7 +229,7 @@ const TravelPage = () => {
               padding={0.3}
               valueScale={{ type: 'linear' }}
               indexScale={{ type: 'band', round: true }}
-              colors={{ scheme: 'brown_blueGreen' }}
+              colors={[theme.palette.secondary.main]}
               borderColor={{
                 from: 'color',
                 modifiers: [
@@ -260,8 +263,8 @@ const TravelPage = () => {
                 from: 'color',
                 modifiers: [
                   [
-                    'brighter',
-                    1.6
+                    'darker',
+                    2.5
                   ]
                 ]
               }}
@@ -294,7 +297,13 @@ const TravelPage = () => {
               from={minDate}
               to={maxDate}
               emptyColor="#eeeeee"
-              colors={[ '#61cdbb', '#97e3d5', '#e8c1a0', '#f47560' ]}
+              colors={[
+                theme.palette.primary.light,
+                theme.palette.primary.main,
+                theme.palette.primary.dark,
+                theme.palette.secondary.main,
+                theme.palette.secondary.dark,
+              ]}
               margin={{ top: 10, right: 40, bottom: 100, left: 40 }}
               yearSpacing={40}
               monthBorderColor="#ffffff"

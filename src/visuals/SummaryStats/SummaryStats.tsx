@@ -25,7 +25,7 @@ const SummaryStats = ({ data }: Props) => {
         <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
           {data.title}
         </Typography>
-        <Typography sx={{ m: 2, fontSize: 72 }} variant="h1" color='text.primary' component='div'>
+        <Typography sx={{ m: 2, fontSize: 72 }} variant="h1" color='primary.dark' component='div'>
           {data.stats ? Intl.NumberFormat('en-US', {
             notation: "compact",
             maximumFractionDigits: 1,
