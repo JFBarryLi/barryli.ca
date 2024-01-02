@@ -34,7 +34,7 @@ const WorkExperience = ({experience}: Props) => (
       to right,
       white,
       ${theme.palette.primary.main},
-      ${theme.palette.secondary.main},
+      ${theme.palette.primary.main},
       white)
       1`,
   }}>
