@@ -1,5 +1,3 @@
-import { useSelector } from 'react-redux';
-
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 
