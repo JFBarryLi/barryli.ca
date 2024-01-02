@@ -2,24 +2,11 @@ import { useSelector } from 'react-redux';
 
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
-import CircularProgress from '@mui/material/CircularProgress';
 
 import NavBar from 'components/NavBar';
 import WorkExperience from 'components/WorkExperience';
 
-import { useGetTravelLogByTripNameQuery } from 'apis/travelLog';
-
-import {
-  selectCountryCount,
-  selectLatestDay,
-} from 'slices/travelLog';
-
 const AboutPage = () => {
-  const { isLoading } = useGetTravelLogByTripNameQuery('World Tour 2021-2023');
-
-  const latestDay = useSelector(selectLatestDay);
-  const countryCount = useSelector(selectCountryCount);
-
   return (
     <Box component='div' sx={{
       display: 'block',
@@ -34,25 +21,36 @@ const AboutPage = () => {
           margin: '0.5em',
           display: 'block',
         }}>
-          Hello, I'm Barry.
+          Hello, I'm Barry. I am an experienced data engineer who has worked in a diverse set of environments, from startups to international organizations.
+        </Typography>
+        <Typography variant='body1' component='div' sx={{
+          margin: '0.5em',
+          display: 'block',
+        }}>        
+          I specialize in designing and building data platforms from the ground up. As well as maintaining an organization's existing data platform.
+          </Typography>
+          <Typography variant='body1' component='div' sx={{
+            margin: '0.5em',
+            display: 'block',
+          }}>
+          I place heavy emphasis on engineering best practices in order to ensure reliability, observability, availability, maintainability, scalability, and governance of the data platform.
+        </Typography>
+        <Typography variant='body1' component='div' sx={{
+          margin: '0.5em',
+          marginTop: '1.5em',
+          display: 'block',
+        }}>
+          When I'm not working, I spend my free time travelling the world and climbing mountains.
         </Typography>
         <Typography variant='body1' component='div' sx={{
           margin: '0.5em',
           display: 'block',
         }}>
-          I have spent {
-            isLoading ? <CircularProgress size='1em' /> : latestDay
-          } days travelling the world in 2021-2023.
         </Typography>
         <Typography variant='body1' component='div' sx={{
           margin: '0.5em',
           display: 'block',
         }}>
-          Over these {
-            isLoading ? <CircularProgress size='1em' /> : latestDay
-          } days I have travelled to {
-            isLoading ? <CircularProgress size='1em' /> : countryCount
-          } different countries.
         </Typography>
       </Box>
 

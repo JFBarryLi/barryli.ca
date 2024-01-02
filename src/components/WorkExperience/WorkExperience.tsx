@@ -14,7 +14,16 @@ type Props = {
 
 const WorkExperience = ({experience}: Props) => (
   <Box component='div' sx={{
-    margin: '1em',
+    margin: '2em',
+    marginLeft: {
+      sm: 'auto',
+    },
+    marginRight: {
+      sm: 'auto',
+    },
+    width: {
+      sm: '50%',
+    },
     padding: '1em',
     display: 'flex',
     alignItems: 'center',
@@ -30,6 +39,8 @@ const WorkExperience = ({experience}: Props) => (
       1`,
   }}>
     <Typography variant='h3' component='div' sx={{
+      textAlign: 'center',
+      fontWeight: 500,
     }}>
       {experience.title}
     </Typography>
@@ -37,14 +48,18 @@ const WorkExperience = ({experience}: Props) => (
       fontStyle:'italic',
       marginBottom: '0.5em',
       textAlign: 'center',
+      fontWeight: 400,
+      color: '#173A5E',
     }}>
       {experience.company}
     </Typography>
     <Typography variant='body1' component='div' sx={{
+      textAlign: 'center',
     }}>
       📍 {experience.location}
     </Typography>
     <Typography variant='body1' component='div' sx={{
+      textAlign: 'center',
     }}>
       🗓️ {experience.date}
     </Typography>
