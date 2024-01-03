@@ -1,3 +1,5 @@
+import { useTheme, Theme } from '@mui/material/styles';
+
 import Box from '@mui/material/Box';
 import Globe from 'react-globe.gl';
 
@@ -9,7 +11,25 @@ interface Props {
   data: GlobeData;
 }
 
+const getPointColor = (days: number, maxDays: number, theme:Theme) => {
+  const ratio = days/maxDays;
+  let color;
+  if (ratio <= 0.05) {
+    color = theme.palette.primary.light;
+  } else if (ratio <= 0.2 && ratio > 0.05) {
+    color = theme.palette.primary.main;
+  } else if (ratio <= 0.6 && ratio > 0.2) {
+    color = theme.palette.primary.dark;
+  } else {
+    color = theme.palette.secondary.dark;
+  }
+  
+  return color;
+}
+
 const TravelGlobe = ({ data }: Props) => {
+  const theme = useTheme();
+
   return (
     <Box component='div' sx={{
       margin: 4,
@@ -29,7 +49,7 @@ const TravelGlobe = ({ data }: Props) => {
         pointLng={(d: any) => d.lng}
         pointRadius={() => 0.3}
         pointAltitude={(d: any) => d.days/data.maxDays * 0.5}
-        pointColor={() => 'blue'}
+        pointColor={(d: any) => getPointColor(d.days, data.maxDays, theme)}
 
         labelsData={data.travelLocations}
         labelLat={(d: any) => d.lat}
@@ -37,7 +57,7 @@ const TravelGlobe = ({ data }: Props) => {
         labelText={(d: any) => ''}
         labelSize={() => 1}
         labelDotRadius={() => 0.5}
-        labelColor={() => 'orange'}
+        labelColor={() => theme.palette.secondary.main}
 
         arcsData={data.travelPaths}
         arcLabel={(d: any) => `<div><div style='font-weight: 400; font-family: "Roboto","Helvetica","Arial",sans-serif; border-radius: 10px; padding: 0.5em; background-color: orange; color: #00000099'>Day ${d.Day} - ${d.Date} <br />${d.StartLoc} → ${d.EndLoc}</div></div>`}
@@ -45,7 +65,7 @@ const TravelGlobe = ({ data }: Props) => {
         arcStartLng={(d: any) => d.StartLng}
         arcEndLat={(d: any) => d.EndLat}
         arcEndLng={(d: any) => d.EndLng}
-        arcColor={() => '#ff0000'}
+        arcColor={(d: any) => [theme.palette.primary.light, theme.palette.secondary.main]}
         arcDashLength={0.5}
         arcDashInitialGap={() => Math.random()}
         arcDashGap={1}
