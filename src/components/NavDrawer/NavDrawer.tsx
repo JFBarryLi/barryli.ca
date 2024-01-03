@@ -1,5 +1,7 @@
 import { SyntheticEvent } from 'react';
 
+import Typography from '@mui/material/Typography';
+import Link from '@mui/material/Link';
 import Box from '@mui/material/Box';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import Divider from '@mui/material/Divider';
@@ -50,7 +52,7 @@ const NavDrawer = function ({ drawIsOpen, handleDrawerToggle }: Props) {
           to='/'
         >
           <ListItemIcon>
-            <HomeIcon />
+            <HomeIcon color='secondary' />
           </ListItemIcon>
           <ListItemText primary='Home' />
         </ListItem>
@@ -61,7 +63,7 @@ const NavDrawer = function ({ drawIsOpen, handleDrawerToggle }: Props) {
           to='/about'
         >
           <ListItemIcon>
-            <InfoIcon />
+            <InfoIcon color='secondary' />
           </ListItemIcon>
           <ListItemText primary='About' />
         </ListItem>
@@ -72,7 +74,7 @@ const NavDrawer = function ({ drawIsOpen, handleDrawerToggle }: Props) {
           to='/travel'
         >
           <ListItemIcon>
-            <PublicIcon />
+            <PublicIcon color='secondary' />
           </ListItemIcon>
           <ListItemText primary='Travel' />
         </ListItem>
@@ -86,11 +88,28 @@ const NavDrawer = function ({ drawIsOpen, handleDrawerToggle }: Props) {
           to='/contact'
         >
           <ListItemIcon>
-            <ContactPageIcon />
+            <ContactPageIcon color='secondary' />
           </ListItemIcon>
           <ListItemText primary='Contact' />
         </ListItem>
       </List>
+      <Link
+        href='mailto:contact@barryli.ca'
+        underline='none'
+        align='center'
+        sx={{
+          padding: '1em',
+          position: 'absolute',
+          bottom: 0,
+          left: '50%',
+          transform: 'translate(-50%)',
+        }}
+      >
+        <Divider />
+        <Typography variant='subtitle1' component='div'>
+          contact@barryli.ca
+        </Typography>
+      </Link>
     </div>
   );
 
