@@ -3,7 +3,6 @@ import Link from '@mui/material/Link';
 import Typography from '@mui/material/Typography';
 
 import NavBar from 'components/NavBar';
-import PageHeader from 'components/PageHeader';
 
 const ContactPage = () => (
   <Box component='div' sx={{
@@ -12,7 +11,6 @@ const ContactPage = () => (
     height: '100%',
   }}>
     <NavBar />
-    <PageHeader text='Contact' />
     <div>
       <Typography sx={{
         textAlign: 'center',
