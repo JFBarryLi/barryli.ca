@@ -209,7 +209,7 @@ export const selectCountryCount = createSelector(
   [selectTravelLog],
   travelLog => {
     if (travelLog.length !== 0) {
-      return  new Set(
+      return new Set(
         travelLog.map((o: TravelLogItem) => o.EndCountry)
       ).size
     } else {
@@ -376,6 +376,19 @@ export const selectLocationGraphLinks = createSelector(
           }
         }
       );
+    } else {
+      return [];
+    }
+  }
+);
+
+export const selectCountryCodes = createSelector(
+  [selectTravelLog],
+  travelLog => {
+    if (travelLog.length !== 0) {
+      return Array.from(new Set(
+        travelLog.map((o: TravelLogItem) => o.EndCountryCode)
+      )).filter(Boolean);
     } else {
       return [];
     }

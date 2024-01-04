@@ -7,12 +7,15 @@ import VisualTitle from 'components/VisualTitle';
 
 import SummaryStats from 'visuals/SummaryStats';
 import TravelGraph from 'visuals/TravelGraph';
+import FlagsCollected from 'visuals/FlagsCollected';
+
 import { ResponsiveBar } from '@nivo/bar';
 import { ResponsiveCalendar } from '@nivo/calendar';
 
 import {
   selectTravelLocations,
   selectCountryCount,
+  selectCountryCodes,
   selectWordCount,
   selectTotalHaversineDistance,
   selectCountryByDays,
@@ -79,6 +82,7 @@ const TravelPage = () => {
   const travelGraphNodes = useSelector(selectLocationGraphNodes);
   const travelGraphEdges = useSelector(selectLocationGraphLinks);
 
+  const countryCodes = useSelector(selectCountryCodes);
   const theme = useTheme();
 
   return (
@@ -293,6 +297,14 @@ const TravelPage = () => {
             }}>
               <TravelGraph nodes={travelGraphNodes} edges={travelGraphEdges} />
             </Card>
+          </Box>
+        </Grid>
+        <Grid item xs={12}>
+          <Box component='div' sx={{
+            'width': '100%'
+          }}>
+            <VisualTitle text='Flags Collected' />
+            <FlagsCollected data={{'countryCodes': countryCodes}} />
           </Box>
         </Grid>
         <Grid item xs={12}>
