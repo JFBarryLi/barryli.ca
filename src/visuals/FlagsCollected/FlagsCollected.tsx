@@ -16,11 +16,11 @@ const FlagsCollected = ({ data }: Props) => {
     let src;
     
     if (code === 'xk') {
-      src = 'https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/flat/32/Kosovo.png';
+      src = 'https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/flat/64/Kosovo.png';
     } else {
-      src = 'https://flagsapi.com/' + code.toUpperCase() + '/flat/32.png';
+      src = 'https://flagsapi.com/' + code.toUpperCase() + '/flat/64.png';
     }
-    return <Box component='img' sx={{margin: '0.5em'}} alt={code.toUpperCase()} title={code.toUpperCase()} src={src} />;
+    return <Box component='img' sx={{margin: '0.5em', width: '32px'}} alt={code.toUpperCase()} title={code.toUpperCase()} src={src} />;
   }) : <CircularProgress color='primary' />;
 
   return (
