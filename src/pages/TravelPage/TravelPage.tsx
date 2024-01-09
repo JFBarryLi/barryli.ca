@@ -15,7 +15,7 @@ import { ResponsiveCalendar } from '@nivo/calendar';
 import {
   selectTravelLocations,
   selectCountryCount,
-  selectCountryCodes,
+  selectCountryStats,
   selectWordCount,
   selectTotalHaversineDistance,
   selectCountryByDays,
@@ -82,7 +82,7 @@ const TravelPage = () => {
   const travelGraphNodes = useSelector(selectLocationGraphNodes);
   const travelGraphEdges = useSelector(selectLocationGraphLinks);
 
-  const countryCodes = useSelector(selectCountryCodes);
+  const countryStats = useSelector(selectCountryStats);
   const theme = useTheme();
 
   return (
@@ -304,7 +304,7 @@ const TravelPage = () => {
             'width': '100%'
           }}>
             <VisualTitle text='Flags Collected' />
-            <FlagsCollected data={{'countryCodes': countryCodes}} />
+            <FlagsCollected data={countryStats} />
           </Box>
         </Grid>
         <Grid item xs={12}>

@@ -107,6 +107,10 @@ interface LocationGraphLink {
 
 interface LocationGraphLinks extends Array<LocationGraphLink> {}
 
+interface CountryDays {
+  [key: string]: number;
+}
+
 interface TravelLog {
   travelLogData: TravelLogData;
 }
@@ -382,13 +386,24 @@ export const selectLocationGraphLinks = createSelector(
   }
 );
 
-export const selectCountryCodes = createSelector(
+export const selectCountryStats = createSelector(
   [selectTravelLog],
   travelLog => {
     if (travelLog.length !== 0) {
-      return Array.from(new Set(
-        travelLog.map((o: TravelLogItem) => o.EndCountryCode)
-      )).filter(Boolean);
+      const countryDays: CountryDays = travelLog.reduce((acc: any, curr) => {
+        acc[curr['EndCountry']] = (acc[curr['EndCountry']] ?? 0) + 1;
+        return acc;
+      }, {});
+
+      const countries = Object.fromEntries(travelLog.map(
+        (tLog: TravelLogItem) => ([tLog.EndCountry, tLog.EndCountryCode])
+      ));
+      
+      const countryStats = Object.entries(countryDays).map(([k, v]) => (
+        {'countryName': k, 'countryCode': countries[k], 'daysSpent': v}
+      ));
+
+      return countryStats;
     } else {
       return [];
     }
