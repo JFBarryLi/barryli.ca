@@ -36,6 +36,7 @@ const TravelGlobe = ({ data }: Props) => {
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
+      canvas: {borderRadius: '50%'}
     }}>
       <Globe
         height={window.innerWidth/1.25}
