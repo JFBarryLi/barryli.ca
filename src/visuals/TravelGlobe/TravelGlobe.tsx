@@ -45,7 +45,22 @@ const TravelGlobe = ({ data }: Props) => {
         globeImageUrl={earth}
 
         pointsData={data.travelLocations}
-        pointLabel={(d: any) => `<div><div style='font-weight: 400; font-family: "Roboto","Helvetica","Arial",sans-serif; border-radius: 10px; padding: 0.5em; background-color: orange; color: #00000099'>${d.name}<br />Total # of days spent here: ${d.days}<br /># of visits: ${d.numVisits}</div></div>`}
+        pointLabel={
+          (d: any) => `
+            <div>
+              <div style='
+                font-weight: 400;
+                font-family: "Roboto","Helvetica","Arial",sans-serif;
+                border-radius: 10px;
+                padding: 0.5em;
+                background-color: orange;
+                color: #00000099
+              '>
+                ${d.name}<br />Total # of days spent here: ${d.days}<br /># of visits: ${d.numVisits}
+              </div>
+            </div>
+          `
+        }
         pointLat={(d: any) => d.lat}
         pointLng={(d: any) => d.lng}
         pointRadius={() => 0.3}
@@ -61,7 +76,22 @@ const TravelGlobe = ({ data }: Props) => {
         labelColor={() => theme.palette.secondary.main}
 
         arcsData={data.travelPaths}
-        arcLabel={(d: any) => `<div><div style='font-weight: 400; font-family: "Roboto","Helvetica","Arial",sans-serif; border-radius: 10px; padding: 0.5em; background-color: orange; color: #00000099'>Day ${d.Day} - ${d.Date} <br />${d.StartLoc} → ${d.EndLoc}</div></div>`}
+        arcLabel={
+          (d: any) => `
+            <div>
+              <div style='
+                font-weight: 400;
+                font-family: "Roboto","Helvetica","Arial",sans-serif;
+                border-radius: 10px;
+                padding: 0.5em;
+                background-color: orange;
+                color: #00000099
+              '>
+                Day ${d.Day} - ${d.Date} <br />${d.StartLoc} → ${d.EndLoc}
+              </div>
+            </div>
+          `
+        }
         arcStartLat={(d: any) => d.StartLat}
         arcStartLng={(d: any) => d.StartLng}
         arcEndLat={(d: any) => d.EndLat}
