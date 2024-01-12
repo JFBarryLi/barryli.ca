@@ -1,3 +1,5 @@
+import { useRef, useEffect, useState } from 'react'
+
 import { useTheme, Theme } from '@mui/material/styles';
 
 import Box from '@mui/material/Box';
@@ -28,7 +30,17 @@ const getPointColor = (days: number, maxDays: number, theme:Theme) => {
 }
 
 const TravelGlobe = ({ data }: Props) => {
+  const globeRef = useRef();
+  const [altitude, setAltitude] = useState(2.5);
+  const ORDER_UPDATE_INTERVAL = 100;
   const theme = useTheme();
+
+  useEffect(() => {
+    setInterval(() => {
+      const pov = (globeRef.current as any)?.pointOfView?.();
+      setAltitude(Math.round((pov?.altitude ?? 2.5) * 100) / 100);
+    }, ORDER_UPDATE_INTERVAL);
+  }, []);
 
   return (
     <Box component='div' sx={{
@@ -39,13 +51,24 @@ const TravelGlobe = ({ data }: Props) => {
       canvas: {borderRadius: '50%'}
     }}>
       <Globe
+        ref={globeRef}
+
         height={window.innerWidth/1.25}
         width={window.innerWidth/1.25}
         backgroundColor='#ffffff'
         globeImageUrl={earth}
 
         pointsData={data.travelLocations}
-        pointLabel={
+        pointLabel={() => ('')}
+        pointLat={(d: any) => d.lat}
+        pointLng={(d: any) => d.lng}
+        pointRadius={0.3}
+        pointAltitude={(d: any) => d.days/data.maxDays * 0.5}
+        pointColor={(d: any) => getPointColor(d.days, data.maxDays, theme)}
+
+        labelsData={data.travelLocations}
+        labelLat={(d: any) => d.lat}
+        labelLabel={
           (d: any) => `
             <div>
               <div style='
@@ -61,18 +84,10 @@ const TravelGlobe = ({ data }: Props) => {
             </div>
           `
         }
-        pointLat={(d: any) => d.lat}
-        pointLng={(d: any) => d.lng}
-        pointRadius={() => 0.3}
-        pointAltitude={(d: any) => d.days/data.maxDays * 0.5}
-        pointColor={(d: any) => getPointColor(d.days, data.maxDays, theme)}
-
-        labelsData={data.travelLocations}
-        labelLat={(d: any) => d.lat}
         labelLng={(d: any) => d.lng}
         labelText={(d: any) => ''}
         labelSize={() => 1}
-        labelDotRadius={() => 0.5}
+        labelDotRadius={Math.max(altitude * 0.7, 0.4)}
         labelColor={() => theme.palette.secondary.main}
 
         arcsData={data.travelPaths}
