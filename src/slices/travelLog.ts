@@ -281,6 +281,17 @@ export const selectPlaceByDays = createSelector(
   }
 );
 
+export const selectDays = createSelector(
+  [selectTravelLog],
+  travelLog => {
+    if (travelLog.length !== 0) {
+      return travelLog.length;
+    } else {
+      return 0;
+    }
+  }
+);
+
 export const selectMaxDate = createSelector(
   [selectTravelLog],
   travelLog => {

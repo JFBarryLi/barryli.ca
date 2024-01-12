@@ -20,6 +20,7 @@ import {
   selectTotalHaversineDistance,
   selectCountryByDays,
   selectPlaceByDays,
+  selectDays,
   selectMaxDate,
   selectMinDate,
   selectWordCountByDate,
@@ -70,6 +71,13 @@ const TravelPage = () => {
     return b.days - a.days;
   }).slice(0, 10);
 
+  const totalDays = useSelector(selectDays);
+  const totalDaysStats = {
+    title: '',
+    stats: totalDays,
+    description: 'Days On the Road'
+  }
+
   const places = useSelector(selectTravelLocations);
   const placeByVisits = places.sort((a, b) => {
     return b.numVisits - a.numVisits;
@@ -93,19 +101,25 @@ const TravelPage = () => {
     }}>
       <NavBar />
       <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, lg: 1 }}>
-        <Grid item xs={12} sm={6} lg={4} sx={{
+        <Grid item xs={12} sm={6} lg={3} sx={{
           alignItems: 'stretch',
           display: 'flex',
         }}>
           <SummaryStats data={countryCountSummaryStats} />
         </Grid>
-        <Grid item xs={12} sm={6} lg={4} sx={{
+        <Grid item xs={12} sm={6} lg={3} sx={{
           alignItems: 'stretch',
           display: 'flex',
         }}>
           <SummaryStats data={wordCountSummaryStats} />
         </Grid>
-        <Grid item xs={12} lg={4} sx={{
+        <Grid item xs={12} sm={6} lg={3} sx={{
+          alignItems: 'stretch',
+          display: 'flex',
+        }}>
+          <SummaryStats data={totalDaysStats} />
+        </Grid>
+        <Grid item xs={12} sm={6} lg={3} sx={{
           alignItems: 'stretch',
           display: 'flex',
         }}>
